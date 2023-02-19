@@ -1,0 +1,24 @@
+/*
+**************************
+* CSS de Login.html.twig *
+**************************
+*/
+
+
+
+.bg {
+  /*background: linear-gradient(to bottom, #000428, #004683);*/
+  width : 25%;
+  height : 25vh;
+ /* background: linear-gradient(to bottom, #473c01, #744e01f9); */
+  }
+  .form-container {
+  border : #fff solid 0;
+  padding : 50px 60px;
+  margin-top : auto;
+  /*box-shadow : -1px 4px 26px 11px rgb(0, 0, 0, 0.75);*/
+  box-shadow : -1px 4px 26px 11px rgb(255, 180, 0);
+   /* background: linear-gradient(to bottom, #473c01, #744e01f9);*/
+    background-color: rgba(2, 90, 165, 0.5);  
+}
+

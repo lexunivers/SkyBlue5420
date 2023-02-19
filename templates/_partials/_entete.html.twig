@@ -1,0 +1,38 @@
+        {% block stylesheets %}
+           <!--  {{ encore_entry_link_tags('app') }} -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        {% endblock %}
+ <style>
+      hr{
+        height: 3px;
+        background-color: #194a8d;
+        border: none;
+      }
+</style>
+<div class="container">	
+</br>
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="card mb-4">
+            <div class="card-body bg-primary text-white text-left">
+              <h5>Compte de : {{app.user.firstname}} {{app.user.lastname}}</h5> 
+              <h5>N° Pilote : {{app.user.id}} </h5>					
+              <h5>N°Comptable : {{app.user.comptepilote.id}}</h5>					
+            </div>
+          </div>
+        </div>		
+      
+        <div class="col-lg-5">
+          <div class="card mb-6">
+              <div class="card-body bg-primary text-white text-center">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                      <h6>Membre connecté : {{ app.user }}</h6>
+                      <hr> 
+                      <a button class="btn btn-outline-success" role="button" href="{{ path('app_logout') }}">Déconnexion  </a>
+                    	<a href="{{ path('sky_user_mesdossiers') }}" class="btn btn-outline-success" role="button" aria-pressed="true">  Mes Dossiers</a>	
+                    {% endif %}									
+              </div>    
+          </div>  
+        </div>
+	    </div>        
+<hr>

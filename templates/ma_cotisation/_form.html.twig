@@ -1,0 +1,28 @@
+{{ form_start(form) }}
+<div class="row">
+	<div class="col">
+	{{ form_row(form.user, {'label' : 'Adhérent : ', 'attr' : { 'class' : 'user' }} ) }}
+	</div>
+</div>
+
+{#	{{ form_widget(form.statut, {'label' : 'Statut', 'attr': {'class': 'cotisationclub' }} ) }}	#}
+
+<div class="row">
+	<div class="input-field col s12 m12 l12">
+	
+	{% if validation == true %}	
+		{{ form_row(form.statut, {'label' : 'Statut : ', 'attr' : { 'class' : 'CotisationClub' }} ) }}
+	{% else %}
+			<li><em>Pas de validation</em></li>
+	{% endif %}	
+	</div>
+</div>	
+<div class="row">
+		<div class="input-field col s12 m6 l6">
+		{{ form_row(form.InfoPilote, {'label' : 'InfoPilote : ', 'attr' : { 'class' : 'CotisationClub' }} ) }}
+		</div>
+</div>
+    {# {{ form_widget(form) }} #}
+    <br />
+    <button class="btn btn-primary">{{ button_label|default('valider') }}</button>
+{{ form_end(form) }}

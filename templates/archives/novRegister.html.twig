@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+	{% block stylesheets %}		
+			{{ encore_entry_link_tags('app') }}
+	{% endblock %}
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+<div class="wrapper">
+{{ form_start(registrationForm) }}
+        <div class="h5 font-weight-bold text-center mb-3" style="color:#c6ff00">Inscription</div>
+            <div class="form-group d-flex align-items-center" style="color:#c6ff00;" >
+                <div class="icon"><span class="far fa-user"></span></div>
+               
+                <div class="form-control"  placeholder="Utilisateur" >
+                    {{ form_row(registrationForm.username) }}
+                </div >   
+            </div>
+
+            <div class="form-group d-flex align-items-center">
+                <div class="icon"><span class="far fa-user"></span></div>
+                <div class="form-control"  placeholder="Prénom" >
+                    {{ form_row(registrationForm.firstname) }}
+                </div >                 
+
+            </div>
+
+            <div class="form-group d-flex align-items-center">
+                <div class="icon"><span class="far fa-user"></span></div>
+                <div class="form-control"  placeholder="Nom" >
+                    {{ form_row(registrationForm.lastname) }}
+                </div >                 
+                
+            </div>
+
+            <div class="form-group d-flex align-items-center">
+                <div class="icon"><span class="far fa-envelope"></span></div>
+                <div class="form-control"  placeholder="email" >
+                    {{ form_row(registrationForm.email) }}
+                </div >
+
+                
+            </div>
+
+            <div class="form-group d-flex align-items-center">
+                <div class="icon"><span class="fas fa-key"></span></div>
+                    <div class="form-control" type="password" placeholder="Mot de Pass" >
+                        {{ form_row(registrationForm.plainPassword) }}
+                    </div >                
+                </div>                               
+            </div>
+            
+
+ <div>
+ 				    <input type="hidden" name="_csrf_token"
+					   value="{{ csrf_token('authenticate') }}">
+               <button type="submit" class="btn btn-danger">Valider</button>
+</div>
+                       {{ form_end(registrationForm) }}
+                    </div>      
+        </div>               
+
+</div>
+
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+	
+{% endblock %}

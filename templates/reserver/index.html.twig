@@ -1,0 +1,297 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+    {% block stylesheets %}
+		<meta charset='utf-8' />		
+			{{ encore_entry_link_tags('app') }}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{ asset('fullcalendar-scheduler/lib/main.css') }}" rel='stylesheet' />
+    <script src="{{ asset('fullcalendar-scheduler/lib/main.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
+	{% endblock %}
+
+{% block javascript %}
+<style>
+
+</style>
+<script type="text/javascript">
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+		schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+		locale: 'fr',
+		timeZone: 'Europe/Paris',   
+		slotMinTime: '08:00:00', 
+		slotMaxTime: '19:45:00',
+		slotDuration: '00:15:00',
+		scrollTime: '00:00', // undo default 6am scrollTime
+		editable: true, // enable draggable events
+		selectable: true,
+		aspectRatio: 1.8,
+		nowIndicator:true,
+		headerToolbar: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'resourceTimelineDay, timeGridWeek, dayGridMonth, listWeek'
+		},
+		
+		buttonText:{
+        today:    'Aujourd\'hui',
+        month:    'Mois',
+        week:     'Semaine',
+        day:      'Jour',
+        list:     'Liste'
+        },
+
+		initialView: 'resourceTimelineDay',
+		navLinks: true,
+		resourceAreaWidth: '17%',
+		//resourceAreaHeaderContent: 'Appareils',
+		//resourceGroupField: 'title',
+
+		resourceAreaColumns: [ 
+			{
+			//group: true,
+			field: 'title',
+			headerContent: 'Plaque',
+      		},
+
+		  	{
+			field: 'marque',
+			headerContent: 'Marque',
+
+		  	},		  
+		  
+		  	{
+			field: 'type',
+			headerContent: 'Type'
+		  	},
+		],
+
+		instructeur: 'http://skyblue5420/reserver/instructeur',
+			
+		resources:'http://skyblue5420/reserver/resources',
+
+		events: 'http://skyblue5420/reserver/load',
+		
+		avion:'http://skyblue5420/reserver/avion',
+
+
+		eventDrop:function(events,start,end,title,id,resourceId, stop)
+		{
+			alert(events.event.title + ' \n' + 'Déplacement \n' + 'du: \n' + events.event.start.toISOString() + ' \n' + 'Au: `\n' + events.event.end.toISOString() );			
+			
+			$.ajax({
+				url:"/reserver/reserver/update",
+				type:"POST",
+				data:{
+					id:events.event.id,
+					title:events.event.title,
+					start:events.event.startStr,
+					end:events.event.endStr,
+					resourceId: events.event.resourceId,
+					stop : events.event.stop,
+					},
+					backgroundColor: 'red',    // an option!	
+					success:function(stop)
+						{
+							if (stop == true) {
+								alert("Vous ne pouvez pas déplacer cette réservation.");
+							} else {
+								alert("Modification Enregistrée.");
+							}
+					calendar.refetchEvents('events,start,end,title,resourceId');
+						}
+			})
+		},
+
+		select: function(info)
+		{
+			var endStr = new Date(endStr); //FullCalendar.formatDate("Y-MM-DD HH:mm:ss"   );
+			beforeDay = new Date(endStr.getFullYear(),endStr.getMonth(),endStr.getDate() - 1,);
+
+			$.ajax({
+				url:"new",
+				type:"POST",
+				data:{
+					title:info.title,
+					start:info.startStr,
+					end:info.endStr,
+					resourceId: info.resource.id,
+					instructeur: info.instructeur,
+					formateur: info.formateur,
+					avion: info.avion,
+					editMode:false,
+						instructeur:function (instructeur)
+						{
+							var x = document.getElementById("reserver_edit_instructeur");
+							var i = x.selectedIndex;
+										  //var value = e.options[e.selectedIndex].value;
+							var selectedValue = document.getElementById("reserver_edit_instructeur").value;  
+										  //document.getElementById("demo").innerHTML = x.options[i].text;
+										  //document.getElementById("demo").innerHTML = x.options[i].value;
+										  //var instructeur = x.options[i].value;
+
+										  
+							//document.getElementById("demo").innerHTML = "<div>Vous avez choisi l'instructeur:<br />" + x.options[i].text + " Soit : " + x.options[i].value + "</div>"; 
+
+							//On récupère le nom
+							var instructeur = x.options[i].value;		
+								if (instructeur)
+								{
+									//	document.getElementById("reserver_edit").innerHTML = "<div>Vous avez choisi l'instructeur:<br />" + x.options[i].text; // + " Soit : " + x.options[i].value + "</div>"; 
+								
+									//var value = instructeur;
+									//	alert("Instructeur TRUE.");
+									//document.getElementById("demo").innerHTML = "<div>Initiales Instructeur:<br />" + x.options[i].value;	
+									
+									return instructeur;	
+									
+									} else {
+										alert("Pas d'instructeur");
+									}
+
+
+										  //document.getElementById("demo").innerHTML = ('Its value is: ' + theSelect[theSelect.selectedIndex].value);  
+								},
+							//value: 'value',								
+							
+	
+							//instructeur = info.instructeur,
+							
+							},
+							success:function()
+								{
+								calendar.refetchEvents('events');	
+
+								alert("Réservation Ajoutée");
+								}
+				  		}
+				  	)
+
+		},	
+
+		eventResize: function(events,start,end,title,id,resourceId,reservataire, stop) {
+			alert('Modification  \n'  + 'Heure de Fin est maintenant:  \n' + events.event.end.toISOString());
+
+			$.ajax({
+				url:"/reserver/reserver/update",
+				type:"POST",
+
+				data:{
+					id:events.event.id,
+					title:events.event.title,
+					start:events.event.startStr,
+					end:events.event.endStr,
+					resourceId: events.event.resourceId,
+					reservataire:events.event.reservataire,
+					stop:events.event.stop,
+					instructeur:events.event.instructeur,	
+					},
+	 									
+					success:function(stop)
+					{
+					//calendar('refetchEvents');
+						if (stop == true) {
+							alert("Vous ne pouvez pas modifier cette réservation.");
+						} else {
+							alert("Modification Enregistrée.");
+						}
+						
+					calendar.refetchEvents('events,start,end,title,resourceId');	
+					},
+			})
+		},
+
+		eventClick:function(events, id, stop)
+		{
+			if(confirm("Etes vous sûr de vouloir annuler cette réservation ?"))
+			{
+			var id = events.event.id;
+			  $.ajax({
+				url:"/reserver/reserver/delete",
+				type:"POST",
+				data:{id:id},
+					success:function(stop)
+					{
+						if (stop == true) {
+							alert("Vous ne pouvez pas Annuler cette réservation.");
+						} else {
+							alert("Réservation Annulée.");
+						}
+						calendar.refetchEvents('refetchEvents');
+					}
+				})
+			}
+		},
+
+	});
+    calendar.render();
+});
+</script>
+{% endblock javascript %}    
+</br>
+
+	{% block htmTwig %}
+	<div class="row">	
+        <div class="col-lg-4">
+					
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			<h6>Adhérent Connecté: {{ app.user }}</h6> 
+		{#<div class="col-lg-3 text-center">#}
+			<a class="btn btn-info text-center" href="{{ path('reserver_add') }}">Réservation Formulaire classique</a>
+		{#</div>#}
+			<a button class="btn btn-outline-primary" role="button" href="{{ path('app_logout') }}">Déconnexion</a>
+		{% endif %}
+										
+		</div>
+		</br>
+    	
+	<div class="col-lg-11 text-center"> 
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-info text-center" data-bs-toggle="modal" data-bs-target="#formateur" >
+            Choisissez Vol Solo ou Ecole-Cliquez
+        </button>
+ 
+        <!-- Modal -->
+        <div class="modal fade" id="formateur" tabindex="-1" aria-labelledby="formateurLabel" aria-hidden="true">
+            <div class="modal-dialog">
+               {# <form id="formateur" class="form" action="{{ path('reserver_formateur', {'editMode': 1}) }}" enctype="multipart/form-data"  method="POST">#}
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="formateurLabel">Pour vol école choisissez votre instructeur et validez sinon choisissez vol solo puis valider</h5>
+                        {#    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
+                        
+						</div>
+                        <div class="modal-body">
+						{#	{% if editMode  %}	#}	
+								<div class="form-group" name="instructeur" >
+								{# {{ include('reserver/_form.html.twig') }}#}
+									<div><strong>{{ form_row(form.instructeur) }}</strong></div>		
+								</div>			
+						{#	{% endif %}	#}	
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Valider</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+	
+	</div>  
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous" ></script>
+        {% endblock %}
+ 
+	{% endblock htmTwig %}	
+
+  <div id='calendar'></div>
+{% endblock body %}		  

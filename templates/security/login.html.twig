@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+	{% block stylesheets %}
+	
+            {{ encore_entry_link_tags('app') }}   
+	{% endblock %}	
+{% block body %}
+<div class="container  col-sm-6 pt-5 my-5 border bg-glass ">
+  <div class="container-fluid col-md-10">
+    <div class="row">
+
+			  <!--  form start -->
+				<p class="h1" style="color:#744e01f9">Login</p>
+
+        <form method="post">
+            {% if error %}
+              <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <div class="form-outline mb-3" >				
+					  {#  <label for="inputUsername" style="font-size:large;" class="card-body bg-success text-white text-center">Utilisateur    :</label>#}
+					    <input type="text"  value="{{ last_username }}"  name="username" placeholder="Utilisateur"   id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+            </div>
+              <!-- Password input -->
+            <div class="form-outline mb-3">
+				    {#  <label for="inputPassword" class="card-body bg-success text-white text-left"> Mot de Passe :</label>#}
+				      <input type="password" name="password"  placeholder="Mot de Passe" id="inputPassword" class="form-control" autocomplete="password" required>
+            </div>
+
+				    <input type="hidden" name="_csrf_token"
+					   value="{{ csrf_token('authenticate') }}">
+
+       	 		
+            <!-- Register buttons -->
+            <button class="btn btn-warning btn-block btn-large mt-2" type="submit">
+              Me Connecter
+            </button>
+
+ 
+              <a button href="{{ path('app_register') }}" class="btn btn-warning btn-block btn-large mt-2">M'inscrire</button></a>
+              <a button type="submit" href="{{ path('forgotten_password') }}" class="btn btn-warning btn-block btn-large mt-2">Mot de passe oublié</button></a>
+
+			  </form>
+      </div>
+  </div>
+</div>
+
+</Section>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+{% endblock %}

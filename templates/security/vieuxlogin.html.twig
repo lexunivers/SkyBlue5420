@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+	{% block stylesheets %}		
+			{{ encore_entry_link_tags('app') }}
+	{% endblock %}
+{% block title %}Login{% endblock %}
+
+{% block body %}
+<!-- Section: Design Block -->
+<Section>
+<style>
+
+</style>
+ <div id="container">
+ <!-- zone de connexion -->
+
+
+ <form method="post">
+
+   <h1>Entrer</h1>
+   
+ <label><b>Nom d'utilisateur</b></label>
+ <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required>
+
+ <label><b>Mot de passe</b></label>
+ <input type="password" placeholder="Entrer le mot de passe" name="password" required>
+
+				    <input type="hidden" name="_csrf_token"
+					   value="{{ csrf_token('authenticate') }}">
+
+ <input type="submit" id='submit' value='L O G I N' >
+
+  
+<a button href="{{ path('app_register') }}" class="btn btn-primary btn-block btn-large mt-2">M'inscrire</button></a>
+<a button href="{{ path('forgotten_password') }}" class="btn btn-primary btn-block btn-large mt-2">Mot de passe oublié</button></a>
+  </form>
+ </div>
+
+
+
+
+ </Section>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+{% endblock %}

@@ -1,0 +1,171 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block fos_user_content %}
+
+		{% include "_partials/_entete.html.twig" %}
+<section >
+  <div class="container py-5" style="background-color:#436c99;">
+    <div class="row">    
+      <div class="col-lg-4">
+        <div class="card mb-2">
+          <div class="card-body text-center">
+          {# on affiche la photo %}#}
+              {% if vich_uploader_asset(user, 'imageFile') is null %}
+                <img src="{{ asset('images/default/avatar.jpg') }}" alt="Symfony!" style="width: 180px; border-radius: 10px;" />  
+              {% else %}
+                <img src="{{  vich_uploader_asset(app.user, 'imageFile') | imagine_filter('my_thumb') }}" alt="Generic placeholder image" class="img-fluid"
+                          style="width: 180px; border-radius: 10px;">                
+              {% endif %}
+
+            <h6 class="my-2">{{ username }}</h6>
+           {# <p class="p-3 mb-2 bg-secondary text-white">Activité: {{user.job }}</p>#}
+          {#  <p class="text-muted mb-3"><div><strong>Hobby:</strong> {{user.hobby }}</div></p>#}
+            <p class="p-3 mb-2 bg-secondary text-white">Téléphone:{{user.phone }}</p>
+            <p class="p-3 mb-2 bg-secondary text-white">Courriel: {{user.email }}</p>
+              <div class="d-flex justify-content-center mb-2">
+              {#  <button type="button" class="btn btn-primary">Follow</button>#}
+              <a type="button" class="btn btn-primary ms-1" href="mailto:lexunivers@orange.fr">Message au Club</a>
+              </div>
+          </div>       
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="p-3" style="width: 21rem;background-color:#ADB9D3; ">
+                  <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-5">
+                <p class="mb-0" style="color:black;"><strong>Utilisateur :</strong></p>
+              </div>
+              <div class="col-sm-7">
+                <p class="mb-2 text-white text-center" style="background-color:#436c99;">{{ username }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <p class="mb-0" style="color:black;"><strong>Prénom :</strong></p>
+              </div>
+              <div class="col-sm-7">
+                <p class="mb-2 text-white text-center" style="background-color:#436c99;"  >{{firstname }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <p class="mb-0" style="color:black;"><strong>Nom :</strong></p>
+              </div>
+              <div class="col-sm-7">
+                <p class="mb-2 text-white text-center" style="background-color:#436c99;" >{{lastname }}</p>
+              </div>
+            </div>
+
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <p class="mb-0" style="color:black;"><strong>Date de Naissance:</strong> </p>
+              </div>
+              <div class="col-sm-7">
+                <p class="mb-2 text-white text-center" style="background-color:#436c99;" >{{user.dateOfBirth |date('d/m/Y')}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <p class="mb-0" style="color:black;"><strong>Hobby:</strong> </p>
+              </div>
+              <div class="col-sm-7">
+                <p class="mb-2  text-white text-center" style="background-color:#436c99;">{{user.hobby}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <p class="mb-0" style="color:black;"><strong>Activité:</strong> </p>
+              </div>
+              <div class="col-sm-7">
+                <p class="mb-2  text-white text-center" style="background-color:#436c99;">{{user.job}}</p>
+              </div>
+            </div>
+            <hr>
+
+        </div>
+		      </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="p-3" style="width: 21rem;background-color:#ADB9D3; ">
+                  <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-5">
+                <p class="mb-0" style="color:black;"><strong>Résidence :</strong></p>
+              </div>
+              <div class="col-sm-7">
+                <p class="mb-2  text-white text-center" style="background-color:#436c99;"> {{user.residence }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <p class="mb-0" style="color:black;"><strong>Rue :</strong></p>
+              </div>
+              <div class="col-sm-7">
+                <p class="mb-2  text-white text-center" style="background-color:#436c99;" >{{user.rue }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <p class="mb-0" style="color:black;"><strong>Numéro :</strong></p>
+              </div>
+              <div class="col-sm-7">
+                <p class="mb- text-white text-center" style="background-color:#436c99;">{{user.numero}}</p>
+              </div>
+            </div>
+
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <p class="mb-0" style="color:black;"><strong>Ville   :</strong> </p>
+              </div>
+              <div class="col-sm-7">
+                <p class="mb-4  text-white text-center" style="background-color:#436c99;">{{user.ville}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <p class="mb-0" style="color:black;"><strong>Code Postal:</strong> </p>
+              </div>
+              <div class="col-sm-7">
+                <p class="mb-2  text-white text-center" style="background-color:#436c99;">{{user.codepostal}}</p>
+              </div>
+            </div>
+            <hr>
+
+        </div>     
+      </div>
+
+
+				<p>
+					{% if app.user is defined %}
+						{% if app.user == user %}
+							<a button class="btn btn-danger" role="button" href="{{ path('user_profile_modifier') }}">Modifier</a>
+						{% endif %}
+					{% endif %}				
+							<a button class="btn btn-primary" role="button" aria-pressed="true" href="{{ path('sky_user_mesdossiers') }}">Mes Dossiers</a>
+				</p>
+
+    </div>
+  </div>
+</section>	
+			
+		
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+{% endblock fos_user_content%}

@@ -1,0 +1,108 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Cotisation Annuelle Club !{% endblock %}
+
+
+{% block body %}
+
+<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+ 
+            {% endblock %}
+
+		
+            <div class="container">
+                <br />		
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>Compte de : {{app.user.firstname}} {{app.user.lastname}}</h5>	  
+                            <h5>N° Pilote : {{app.user.id}} </h5>					
+                            <h5>N°Comptable : {{app.user.comptepilote.id}}</h5>				
+                        </div>
+                                    
+                        <div class="col-4">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <h6>Membre Connecté : {{ app.user.username }}</h6> 
+                                <a button class="btn btn-outline-danger" role="button" href="{{ path('fos_user_security_logout') }}" >Déconnexion</a>
+            
+                            {% else %}
+            
+                            {% endif %}				
+                        </div>
+                    </div>			
+            
+                    <div class="row">
+                        <div><h5>{# On affiche tous les messages flash dont le nom est « notice » #}
+                                        
+                            {% for message in app.session.flashbag.get('notice') %}
+                                <div class="alert alert-danger">
+                                    <p>Message : {{ message }}</p>
+                                </div>
+                          {% endfor %}
+                            </h5>
+                        </div>
+                    </div>
+                    
+                    <br />
+<br />
+<br />
+<br />
+<br />
+
+{# {% block title %}MaCotisation index{% endblock %} #}
+
+{# {% block body %} #}
+    <h2>Ma Cotisation Pge Index</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th> 
+                <th>Annee</th>
+                <th>Cotisation Club</th>
+                <th>Licence FFA</th>
+                <th>InfoPilote</th>
+                <th>Cotisation Totale</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+		
+		
+        {% for ma_cotisation in ma_cotisations %}
+            <tr>
+                <td>{{ ma_cotisation.id }}</td> 
+                <td>{{ ma_cotisation.annee ? ma_cotisation.annee|date('Y') : '' }}</td>
+
+                <td>{{ ma_cotisation.cotisation }}</td>
+                <td>{{ ma_cotisation.LicenceFFA }}</td>
+
+                <td>{{ ma_cotisation.TarifInfoPilote }}</td>
+                <td>{{ ma_cotisation.TotalCotisation }}</td>
+                <td>
+                 <a href="{{ path('ma_cotisation_show', {'id': ma_cotisation.id}) }}">show</a>
+                    <a href="{{ path('ma_cotisation_edit', {'id': ma_cotisation.id} ) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Pas enregistrée !</td>
+            
+
+			</tr>
+			
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+
+
+		
+    <a button class="btn btn-success" href="{{ path('ma_cotisation_new') }}">Souscrire</a>
+{% endblock %}

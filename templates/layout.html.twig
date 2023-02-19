@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	{% block stylesheets %}		
+         {{ encore_entry_link_tags('app') }}
+	{% endblock %}			
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row display-table-row">
+            <div class="col-lg-2 col-md-1 hidden-xsd-none d-sm-block display-table-cell v-align box" id="navigation">
+                <div class="navi">				
+					<ul class="nav flex-column">
+                        <li class="active"><a href="{{ path('sky_user_mesdossiers') }}"><i class="fa fa-home" aria-hidden="true"></i><span class="d-none d-md-block">Accueil</span></a></li>
+							<li><a href="{{ path('user_profile_voir') }}"><i class="fa fa-user" aria-hidden="true"></i><span class="d-none d-md-block">Profile</span></a></li>
+							{#<li><a href="{{ path('user_profile_modifier') }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="d-none d-md-block">Modifier Mon Profile</span></a></li>#}
+							{#<li><a href="{{ path('meteo') }}"><i class="fa fa-book" aria-hidden="true"></i><span class="d-none d-md-block">Météo</span></a></li>						#}
+							<li><a href="{{ path('sky_gestion_vol') }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="d-none d-md-block">Enregistrer un Vol</span></a></li>
+							<li><a href="{{ path('sky_compte') }}"><i class="fa fa-calendar" aria-hidden="true"></i><span class="d-none d-md-block">Mon compte</span></a></li>
+							<li><a href="{{ path('sky_gestion_vols_list') }}"><i class="fa fa-user" aria-hidden="true"></i><span class="d-none d-md-block">Mes Vols</span></a></li>
+							<li><a href="{{ path('reserver_index') }}"><i class="fa fa-plane" aria-hidden="true"></i><span class="d-none d-md-block">Réservation</span></a></li>
+							<li><a href="#"><i class="fa fa-plane" aria-hidden="true"></i><span class="d-none d-md-block">Mes Réservations</span></a></li>							
+							{#<li><a href="#"><i class="fa fa-plane" aria-hidden="true"></i><span class="d-none d-md-block">Cotisation Annuelle</span></a></li> #}
+							{#<li><a href="{{ path('ma_cotisation_index') }}"><i class="fa fa-plane" aria-hidden="true"></i><span class="d-none d-md-block">Ma Cotisation</span></a></li>	#}					
+							{#<li><a href="{{ path('fos_user_resetting_request') }}"><i class="fa fa-cog" aria-hidden="true"></i><span class="d-none d-md-block">Mot de Passe</span></a></li>#}
+							<li><sn><a  href="{{ path('forgotten_password') }}">Changer Mot de Passe</a></sn></li>
+						</li>						
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-xl-10 col-lg-11 ">
+					{% block fos_user_content %}{% endblock fos_user_content%}
+													
+					{% block bodycompte %}{% endblock %}
+
+					{% block bodydetail %}{% endblock bodydetail%}
+					
+					{% block body %}{% endblock body %}
+					
+					{% block bodyEdit %}{% endblock %}
+
+					{% block bodycreate %}{% endblock bodycreate%}
+					
+					{% block bodypaiement %}{% endblock %}
+
+					{% block cotisation %}	{% endblock %}
+									
+			</div>
+		</div>
+	</div>
+
+        {% block javascripts %}
+       {{ encore_entry_script_tags('app') }} 
+        {% endblock %}
+
+
+</body>
+</html>

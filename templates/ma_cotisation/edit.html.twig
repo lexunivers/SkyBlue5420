@@ -1,0 +1,73 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}MaCotisation{% endblock %}
+
+{% block body %}
+<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+ 
+            {% endblock %}
+
+		
+            <div class="container">
+                <br />		
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>Compte de : {{app.user.firstname}} {{app.user.lastname}}</h5>	  
+                            <h5>N° Pilote : {{app.user.id}} </h5>					
+                            <h5>N°Comptable : {{app.user.comptepilote.id}}</h5>				
+                        </div>
+                                    
+                        <div class="col-4">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <h6>Membre Connecté : {{ app.user.username }}</h6> 
+                                <a button class="btn btn-outline-danger" role="button" href="{{ path('fos_user_security_logout') }}" >Déconnexion</a>
+            
+                            {% else %}
+            
+                            {% endif %}				
+                        </div>
+                    </div>			
+            
+                    <div class="row">
+                        <div><h5>{# On affiche tous les messages flash dont le nom est « notice » #}
+                                        
+                            {% for message in app.session.flashbag.get('Info') %}
+                                <div class="alert alert-danger">
+                                    <p>Info : {{ message }}</p>
+                                </div>
+                          {% endfor %}
+                            </h5>
+                        </div>
+                    </div>
+                    
+                    <br />
+
+{# {% block title %}Edit MaCotisation{% endblock %} #}
+
+{# {% block body %} #}
+    <h2>Modifier Ma Cotisation {{ ma_cotisation.annee ? ma_cotisation.annee|date('Y') : '' }}</h2>
+	
+    {#	{% if editMode %} #}
+	{#		<h2> ca marche Pas! </h2>#}
+	{#	{% else %}#}
+	{#		<h2> ca marche ! </h2>#}
+	{#	{% endif %}#}
+		
+	{#	{% if OperationComptable %}#}
+	{#		<h2> {{OperationComptable}} </h2>#}
+	{#	{% else %}#}
+	{#		<h2> OperationComptable non</h2>#}
+	{#	{% endif %}#}
+		
+		<br />
+
+    {{ include('ma_cotisation/_form.html.twig', {'button_label': 'Confirmer'}) }}
+
+   {# <a href="{{ path('ma_cotisation_index') }}">Retour à la liste</a> #}
+
+   {# {{ include('ma_cotisation/_delete_form.html.twig') }} #}
+{% endblock %}

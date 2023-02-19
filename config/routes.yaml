@@ -1,0 +1,90 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+sonata_user_admin_security:
+    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+    prefix: /admin
+ 
+sonata_user_admin_resetting:
+    resource: '@SonataUserBundle/Resources/config/routing/admin_resetting.xml'
+    prefix: /admin/resetting
+
+#sky_user_profile:
+#    path: /Profile
+#    controller: App\Controller\MesDossiersController::indexAction
+
+sky_user_mesdossiers:
+    path: /MesDossiers
+    controller: App\Controller\MesDossiersController::indexAction
+   
+meteo:
+    path: /meteo
+    controller: App\Controller\DefaultController::meteo
+
+sky_PDFlistVols:
+    path:    /listVols
+    controller: App\Controller\MesVolsController::PDFlistVolsAction
+
+sky_PDFlistDetailVols:
+    path:    /listDetailVols
+    controller: App\Controller\MesVolsController::PDFlistDetailVolsAction
+ 
+sky_gestion_vol:
+    path:     /SaisirUnvol
+    controller: App\Controller\MesVolsController::SaisirUnVolAction
+    
+sky_dernier_vol:
+    path:     /Derniervol
+    controller: App\Controller\DerniervolController::SaisirUnVolAction
+    
+
+sky_gestion_vol_confirmer:
+    path:     /confirmer/vol/{id}
+    controller: App\Controller\MesVolsController::ConfirmerUnVolAction
+
+sky_gestion_cotisation_confirmer:
+    path:     /confirmer/cotisation/{id}
+    controller: App\Controller\MaCotisationController::ConfirmerCotisationAction    
+
+sky_gestion_vols_list:
+    path:     /list
+    controller: App\Controller\MesVolsController::listdesvolsAction
+
+sky_gestion_vols_detail:
+    path:     /detailsdesvols
+    controller: App\Controller\MesVolsController::detailsdesvolsAction    
+
+sky_gestion_vol_modifier:
+    path:     /modifier/vol/{id}
+    controller: App\Controller\MesVolsController::ModifierUnVolAction
+
+sky_gestion_vol_supprimer:
+    path:     /supprimer/vol/{id}
+    controller: App\Controller\MesVolsController::SupprimerUnVolAction    
+
+sky_gestion_operation_comptable:
+    path: /operationcomptable
+    controller: App\Controller\OperationComptableController::index
+
+sky_contact:
+    path: /contact
+    controller: App\Controller\ContactController::indexAction
+
+sky_compte:
+    path: /MonCompte
+    controller: App\Controller\MonCompteController::indexAction
+
+sky_compte_ajouter:
+    path:     /Ajouter
+    controller: App\Controller\OperationComptableController::AjouterEcritureAction
+
+sky_compte_ecriture:
+    path:     /AjouterEcriture
+    controller: App\Controller\MonCompteController::AjouterecritureAction
+
+sky_PDF_EtatCompte:
+    path:    /Etatcompte
+    controller: App\Controller\MonCompteController::PDFMonCompteAction
+
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale}}">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Accueil{% endblock %} - SkyBlue5418</title>
+		<!--<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">-->
+		
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+
+<body>	
+  	<header>
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">            
+			<a class="navbar-brand" href="{{ path('Accueil') }}" ><img src='../img/logo10.png' alt="logo"></a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active" >
+						<a class="nav-link active"  href="/"><i class="fa-regular fa-briefcase"></i><span>Accueil</span></a>
+					</li>
+
+					<li class="nav-item active">
+						<a class="nav-link active"  href="{{ path('sonata_admin_redirect') }}"><i class="fa-regular fa-folder-open"></i><span>Gestion</span></a>
+					</li>
+					
+					<li class="nav-item active">
+						<a class="nav-link active "  href="{{ path('app_register') }}"><i class="fa fa-sign-out"></i><span>Inscription</span></a> 
+					</li>				
+
+					<li class="nav-item active">
+						<a class="nav-link active"  href="{{ path('sky_contact') }}"><i class="fa fa-envelope fa-fw" ></i><span>Contact</span></a> 
+					</li>					
+					<li class="nav-item active">
+						<a class="nav-link active"  href="{{ path('app_login') }}" ><i class="fa fa-user "></i><span> Login</span></a> 
+					</li>					
+				</ul>
+			</div>
+		</nav>
+	</header>	
+
+<section id="cover">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2 col-xs-12">
+				<p class="lead home-left">Plaisir <br>de <br>Piloter <br></p>
+			</div>
+
+			<div class="col-md-10 col-xs-12">														
+				<main role="main" class="container main">
+				{% block body %}     		
+						{% if app.user and app.user.isVerified == false %}	
+							<div class="alert alert-warning alert-dismissible" role="alert">
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								<div class="alert-message">
+									<strong>Votre compte n'est pas activé</strong>, <a href="{{ path('resend_verif') }}">renvoyer le lien d'activation</a>
+								</div>
+							</div>
+						{% endif %}
+						{% include "_partials/_flash.html.twig" %}
+				{% endblock %}
+
+				</main>	
+			</div>
+		</div>                    
+	</div>                    	                                            
+</section>
+        {% block javascripts %}
+{{ encore_entry_script_tags('app') }}
+        {% endblock %}
+<p>
+		{% include "_partials/_footer.html.twig" %}
+
+</p>
+</body>
+</html>

@@ -1,0 +1,79 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    #sonata.admin.security.mask.builder.class: Sonata\AdminBundle\Security\Acl\Permission\MaskBuilder
+    app.jwtsecret: '%env(JWT_SECRET)%'
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    #security.acl.permission.map:
+      #class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap
+
+    admin.comptepilote:
+        class: App\Admin\ComptepiloteAdmin
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Comptepilote, controller: ~, manager_type: orm, group: Comptabilité, label: Comptepilote }
+
+    admin.avions:
+        class: App\Admin\AvionsAdmin
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Avions, controller: App\Controller\AvionsController, manager_type: orm, group: Parc Avions, label: Avions }
+        #public: true
+
+    admin.resources:
+        class: App\Admin\ResourcesAdmin
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Resources, manager_type: orm, group: Parc Avions, label: Resources }
+        public: true
+            
+    admin.instructeur:
+        class: App\Admin\InstructeurAdmin
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Instructeur, manager_type: orm, group: Formation,label: Instructeur }
+  
+    admin.terrain:
+        class: App\Admin\TerrainAdmin
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Terrain, manager_type: orm, group: Localisation,label: Terrain }
+
+    admin.operation_comptable:
+        class: App\Admin\OperationComptableAdmin
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\OperationComptable, controller: App\Controller\OperationComptableController, manager_type: orm, group: Comptabilité, label: OperationComptable }
+    admin.cotisation_club:
+        class: App\Admin\CotisationClubAdmin
+        arguments: [~, App\Entity\CotisationClub, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Comptabilité, label: Cotisation Club }
+        public: true
+
+    admin.ma_cotisation:
+        class: App\Admin\MaCotisationAdmin
+        arguments: [~, App\Entity\MaCotisation, App\Controller\MaCotisationAdminController]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Comptabilité, label: Cotisation Individuelle }
+        public: true
+    admin.reserver:
+        class: App\Admin\ReserverAdmin
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Reserver, controller: App\Controller\ReserverController, manager_type: orm, group: Reservation, label: Reserver }
+        #public: true
+

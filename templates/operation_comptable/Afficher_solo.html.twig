@@ -1,0 +1,147 @@
+{# {% extends "layout.html.twig" %} #}
+{% extends '@SonataAdmin/standard_layout.html.twig' %} 
+
+{% block sonata_admin_content %} 
+    {#Your content here#}
+
+{# {% block bodycompte %} #}
+
+
+
+     {#   {% block stylesheets %} #}
+     {#       {{ encore_entry_link_tags('app') }}#} 
+         
+     {#   {% endblock %}#}
+
+			<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+			<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>  		
+<div class="container">
+
+					<div class="row">
+							<div><h5>{# On affiche tous les messages flash dont le nom est « notice » #}
+							
+
+								{% for message in app.session.flashbag.get('notice') %}
+										<div class="alert alert-danger">
+												<p>Message : {{ message }}</p>
+										</div>
+								{% endfor %}
+								</h5>
+							</div>
+					</div>
+  <br />
+  
+
+
+					<div class="row">							
+							<div class="col-6">
+								<h3>Situation du Compte de : {#{{app.user.firstname}} {{app.user.lastname}}</h3> #}
+							</div>
+					</div>
+					
+					<div class="row ">
+						<div class="col-md-12">
+						
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+								  <tr class="table-primary">
+										
+										<th>Date</th>
+										<th>Libelle</th>																
+										<th>N°Ecriture</th>
+										<th>Débit</th>														
+										<th>Credit</th> 
+										<th>Solde</th>
+ 										
+									</tr>
+								</thead>
+
+								{% for sommeTotale in pagination %}
+								
+									<tr>
+										<td>{{ sommeTotale.operdate|date('d/m/Y')}}</td>
+										<td>{{ sommeTotale.libelle}}</td>
+										<td>{{ sommeTotale.id}}</td>								
+
+												{% if sommeTotale.opersensmt == 0 %}
+														
+													<td><div class="card bg-danger text-white text-center"><span class="bold">{{ sommeTotale.opermontant | number_format(2, '.', ',')}}</span></div></td>
+													<td></td>	
+															
+												{% else %}
+																	
+													<td></td>														
+													<td><div class="card bg-success text-white text-center"><span class="bold">{{sommeTotale.opermontant| number_format(2, '.', ',')}}</span></div></td>														
+															
+												{% endif %}							
+										<td></td>
+									</tr>
+								
+								{% endfor %}								
+
+										{# affichage des sommes #}
+															
+											<td class="text-center"></td>
+											<td class="text-center"></td>
+											<td><div class="card bg-dark text-white text-center"><span class="bold">Totaux:</span></div></td>
+
+													{% set soldeDebiteur = 0 %}
+													{% set soldeCrediteur = 0 %}
+													{% set credit = 0 %}
+													{% set debit = 0 %}
+
+															{% for key, montantdebit in montantdebit %}
+
+																{% for montantdebit in montantdebit %}
+																	<td><div class="card bg-danger text-white text-center"><span class="bold">{{montantdebit| number_format(2, '.', ',')}}</span></div></td>					
+																	{% set debit = montantdebit %}
+																{% endfor %}
+																										
+															{% endfor %}
+
+															
+															{% for key, montantcredit in montantcredit %}
+
+																{% for montantcredit in montantcredit %}
+
+																	<td><div class="card bg-warning text-black text-center"><span class="bold">{{montantcredit| number_format(2, '.', ',')}}</span></div></td>				
+																	{% set credit = montantcredit %}
+																
+																{% endfor %}
+															
+																	{% if debit >credit %}				
+																		{% set soldeDebiteur = debit-credit %}
+																	{% else %}
+																		{% set soldeCrediteur = credit - debit %}
+																	{% endif %}
+															
+															{% endfor %}
+
+																{% if credit >= debit %}														
+																	<td><div class="card bg-success text-white text-center"><span class="bold">{{soldeCrediteur| number_format(2, '.', ',')}}</span></div></td>
+																{% elseif debit>=credit %}
+																	<td><div class="card bg-danger text-white text-center"><span class="bold">{{soldeDebiteur| number_format(2, '.', ',')}}</span></div></td>
+
+																{% endif %}	
+	
+							</table>
+
+												<div class="pagination justify-content-center">
+													{{ knp_pagination_render(pagination) }}
+												</div>
+	
+						</div>
+					</div>
+	
+			<div>
+			
+		{#	<a href="{{ path('sky_compte_paiement') }}" class="btn btn-outline-primary" role="button" aria-pressed="true">Paiement</a> #}
+		{#	<a href="{{ path('sky_user_mesdossiers') }}" class="btn btn-outline-primary" role="button" aria-pressed="true">Mes Dossiers</a>#}
+			<a href="{{ path('sky_PDF_EtatCompte') }}" class="btn btn-outline-success" role="button" aria-pressed="true"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>  Imprimer</a>			
+		
+			</div>
+
+</div>
+
+  						{{dump(formComptable.user)}}
+{% endblock sonata_admin_content %}

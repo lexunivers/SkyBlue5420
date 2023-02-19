@@ -1,0 +1,182 @@
+{% extends "layout.html.twig" %}
+{% form_theme formMonCompte 'bootstrap_4_layout.html.twig' %}	
+{% block bodypaiement %}
+{{ form_start(formMonCompte) }}
+
+		<meta charset="utf-8">
+
+		<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		
+			
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+	  <br />	
+	<div class="container-fluid">
+		<div class="container">
+		
+					<div class="row">
+						<div class="col-8">
+							<h5>Compte de : {{app.user.firstname}} {{app.user.lastname}}</h5>	  
+							<h5>N° Pilote : {{app.user.id}} </h5>					
+							<h5>N°Comptable : {{app.user.comptepilote.id}}</h5>				
+						</div>
+						
+						<div class="col-4">
+													{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+													<h6>Connecté en tant que: {{ app.user.username }}</h6> 
+
+													<a button class="btn btn-outline-primary" role="button" href="{{ path('app_logout') }}">Déconnexion</a>
+													{% else %}
+
+													{% endif %}				
+						</div>
+					</div>			
+
+					<div class="row">
+							<div><h5>{# On affiche tous les messages flash dont le nom est « notice » #}
+							
+									{% for message in app.session.flashbag.get('notice') %}
+										<div class="alert alert-danger">
+												<p>Message flash : {{ message }}</p>
+										</div>
+									  {% endfor %}
+								</h5>
+							</div>
+					</div>
+
+				
+					{#<div class="row">#}
+					{#	<div class="col-12">#}
+					{#			</br>#}
+					{#			</br>#}	
+					{#		<h3>Mon Compte</h3>#}
+					{#	</div>#}
+					{#</div>#}
+<br />
+<br />
+<br />		
+
+					<div class="row">
+					
+						<div class="col-12">
+								
+							<h3>Versement Par Carte Bancaire</h3>
+						</div>
+					</div>
+<br />
+<br />
+
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="form-group" id="user">
+				<div class="col-sm-12">
+					<div><strong>{{ form_row(formMonCompte.user, {'label' : 'Pilote', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+				</div>
+			</div>	
+
+			<div class="form-group" id="datevol">
+				<div class="col-sm-12">
+					<div><strong>{{ form_row(formMonCompte.OperDate, {'label' : 'Date de Règlement', 'attr' : { 'class' : 'OperationComptable'}}) }}</strong></div> 
+				</div>			
+			</div>
+		</div>
+		
+		<div class="col-sm-3">
+			<div class="form-group">
+				<div class="col-sm-12">		
+					<strong>{{ form_row(formMonCompte.OperMontant, {'label' : 'Montant', 'attr' : { 'class' : 'OperationComptable' }}) }}</strong>
+				</div>							
+			</div>		
+		
+							<div class="form-group">
+								<label class="col-sm-12 col-form-label" for="card-holder-name">Nom de votre Carte</label>
+								
+									<input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+								
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-12 col-form-label" for="card-number">Numéro de Carte</label>
+
+									<input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
+
+							</div>
+							<div class="form-group">
+								<label class="col-sm-12 col-form-label" for="expiry-month">Date Expiration</label>
+								<div class="col-sm-12">
+									<div class="row">
+										<div class="col-6">
+											<select class="form-control col-md-" name="expiry-month" id="expiry-month">
+												<option>Mois</option>
+												<option value="01">Jan (01)</option>
+												<option value="02">Fev (02)</option>
+												<option value="03">Mar (03)</option>
+												<option value="04">Avr (04)</option>
+												<option value="05">Mai (05)</option>
+												<option value="06">Juin (06)</option>
+												<option value="07">Jul (07)</option>
+												<option value="08">Août (08)</option>
+												<option value="09">Sept (09)</option>
+												<option value="10">Oct (10)</option>
+												<option value="11">Nov (11)</option>
+												<option value="12">Dec (12)</option>
+											</select>
+										</div>
+										<div class="col-6">
+											<select class="form-control" name="expiry-year">
+												<option value="13">2013</option>
+												<option value="14">2014</option>
+												<option value="15">2015</option>
+												<option value="16">2016</option>
+												<option value="17">2017</option>
+												<option value="18">2018</option>
+												<option value="19">2019</option>
+												<option value="20">2020</option>
+												<option value="21">2021</option>
+												<option value="22">2022</option>
+												<option value="23">2023</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-SM-12 col-form-label" for="cvv">code de sécurité</label>
+								
+									<input type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code">
+								
+							</div>			
+
+		</div>	
+
+			
+				<div class="col-sm-4">
+					<div class="form-group" id="instructeur">
+						<div class="col-sm-12">						
+							<div><strong>{{ form_row(formMonCompte.libelle, {'label' : 'V/Réf - Commentaire', 'attr' : { 'class' : 'OperationComptable' }}) }}</strong></div>
+						</div>
+					</div>	
+				</div>
+			</div>				
+		</div>		
+	</div>
+						<p>				
+{{ form_widget(formMonCompte.valider, {'attr': {'class': 'btn btn-success'}}) }}
+
+					<a href="{{ path('sky_gestion_vols_list') }}" class="btn btn-outline-danger" role="button" aria-pressed="true">Annuler</a>				
+				</p>			
+{{ form_end(formMonCompte) }}			
+
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+
+{% endblock bodypaiement %}

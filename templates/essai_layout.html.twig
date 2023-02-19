@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			{% block stylesheets %}		
+					{{ encore_entry_link_tags('app') }}
+			{% endblock %}
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@0.5.3/dist/css/axentix.min.css">
+		{#<link rel="stylesheet" href="{{ asset('css/styles.css') }}">#}
+	</head>
+	<body class="layout with-sidenav">
+
+		<div id="example-sidenav" class="sidenav large fixed white">
+			<div>
+				<img class="logo dropshadow-1" src="../../img/logo10.png" alt="Logo"/>
+			</div>
+			
+                        <li class="active"><a href="{{ path('sky_user_mesdossiers') }}"><i class="fa fa-home" aria-hidden="true"></i><span class="d-none d-md-block">Accueil</span></a></li>
+							<li><a href="{{ path('user_profile_voir') }}"><i class="fa fa-user" aria-hidden="true"></i><span class="d-none d-md-block"><class="sidenav-link">Profile</span></a></li>
+							<li><a href="{{ path('user_profile_modifier') }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="d-none d-md-block">Modifier Mon Profile</span></a></li>
+							{#<li><a href="{{ path('meteo') }}"><i class="fa fa-book" aria-hidden="true"></i><span class="d-none d-md-block">Météo</span></a></li>						#}
+							<li><a href="{{ path('sky_gestion_vol') }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="d-none d-md-block">Enregistrer un Vol</span></a></li>
+							<li><a href="{{ path('sky_compte') }}"><i class="fa fa-calendar" aria-hidden="true"></i><span class="d-none d-md-block">Mon compte</span></a></li>
+							<li><a href="{{ path('sky_gestion_vols_list') }}"><i class="fa fa-user" aria-hidden="true"></i><span class="d-none d-md-block">Mes Vols</span></a></li>
+							<li><a href="{{ path('reserver_index') }}"><i class="fa fa-plane" aria-hidden="true"></i><span class="d-none d-md-block">Réservation</span></a></li>
+							<li><a href="#"><i class="fa fa-plane" aria-hidden="true"></i><span class="d-none d-md-block">Mes Réservations</span></a></li>							
+							{#<li><a href="#"><i class="fa fa-plane" aria-hidden="true"></i><span class="d-none d-md-block">Cotisation Annuelle</span></a></li> #}
+							<li><a href="{{ path('ma_cotisation_index') }}"><i class="fa fa-plane" aria-hidden="true"></i><span class="d-none d-md-block">Ma Cotisation</span></a></li>						
+							{#<li><a href="{{ path('fos_user_resetting_request') }}"><i class="fa fa-cog" aria-hidden="true"></i><span class="d-none d-md-block">Mot de Passe</span></a></li>#}
+							<li><a href="#"></a>
+						</li>			
+			
+			
+			
+			<a href="{{ path('sky_compte') }}" class="sidenav-link">MonCompte</a>
+		</div>
+		<main>
+					{% block fos_user_content %}{% endblock fos_user_content%}
+													
+					{% block bodycompte %}{% endblock %}
+
+					{% block bodydetail %}{% endblock bodydetail%}
+					
+					{% block body %}{% endblock body %}
+					
+					{% block bodyEdit %}{% endblock %}
+
+					{% block bodycreate %}{% endblock bodycreate%}
+					
+					{% block bodypaiement %}{% endblock %}
+
+					{% block cotisation %}	{% endblock %}
+
+		</main>
+
+		<footer class="footer primary">
+			Copyright © 2022 - SkyBlue
+		</footer>
+
+
+		<script src="https://cdn.jsdelivr.net/npm/axentix@0.5.3/dist/js/axentix.min.js"></script>
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+
+		<script>
+			var sidenav = new Sidenav('#example-sidenav');
+		</script>
+		<script src="{{ asset('js/scripts.js') }}"></script>
+        {% endblock %}
+	</body>
+</html>

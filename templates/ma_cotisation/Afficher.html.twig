@@ -1,0 +1,95 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}MaCotisation{% endblock %}
+
+{% block body %}
+<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+ 
+            {% endblock %}
+
+		
+            <div class="container">
+                <br />		
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>Compte de : {{app.user.firstname}} {{app.user.lastname}}</h5>	  
+                            <h5>N° Pilote : {{app.user.id}} </h5>					
+                            <h5>N°Comptable : {{app.user.comptepilote.id}}</h5>				
+                        </div>
+                                    
+                        <div class="col-4">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <h6>Membre Connecté : {{ app.user.username }}</h6> 
+                                <a button class="btn btn-outline-danger" role="button" href="{{ path('fos_user_security_logout') }}" >Déconnexion</a>
+            
+                            {% else %}
+            
+                            {% endif %}				
+                        </div>
+                    </div>			
+            
+                    <div class="row">
+                        <div><h5>{# On affiche tous les messages flash dont le nom est « notice » #}
+                                        
+                            {% for message in app.session.flashbag.get('Info') %}
+                                <div class="alert alert-danger">
+                                    <p>Message : {{ message }}</p>
+                                </div>
+                          {% endfor %}
+                            </h5>
+                        </div>
+                    </div>
+                    
+                    <br />
+                    <br />
+					<br />
+                    <br />
+                    <br />
+					
+        <h3>Votre Cotisation {{ ma_cotisation.annee ? ma_cotisation.annee|date('Y') : '' }} a déjà été souscrite ! ✅ </h3>
+
+	
+			<table class="table">
+				<tbody>
+					{#<tr>#} 
+					{#	<th>Id</th>#}
+					{#	<td>{{ ma_cotisation.id }}</td>#}
+				    {#</tr>#}
+					 <tr>
+						<th>Annee</th>
+						<td>{{ ma_cotisation.annee ? ma_cotisation.annee|date('Y') : '' }}</td>
+					</tr>
+					<tr>
+						<th>Cotisation Club</th>
+						<td>{{ ma_cotisation.cotisation }}</td>
+					</tr>
+					<tr>
+						<th>Licence FFA</th>
+						<td>{{ ma_cotisation.LicenceFFA }}</td>
+					</tr>
+					{# <tr> #}
+					{#   <th>InfoPilote</th>#}
+					{#    <td>{{ ma_cotisation.InfoPilote }}</td>#}
+					{#</tr>#}
+					<tr>
+						<th>InfoPilote</th>
+						<td>{{ ma_cotisation.TarifInfoPilote }}</td>
+					</tr>
+
+					<tr>
+						<th>Cotisation Totale</th>
+						<td>{{ ma_cotisation.TotalCotisation }}</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+	    <a button class="btn btn-primary" role="button" aria-pressed="true" href="{{ path('sky_compte') }}">Voir Mon Compte</a> 
+
+
+  {#  {{ include('ma_cotisation/_delete_form.html.twig') }} #}
+{% endblock %}

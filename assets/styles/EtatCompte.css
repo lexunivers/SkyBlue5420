@@ -1,0 +1,79 @@
+/*
+*************************
+* CSS de EtatCompte.html.twig *
+*************************
+*/
+
+* {
+    font-family: DejaVu Sans, sans-serif;
+
+}
+
+.table_compte {
+    width: 1020px;
+    position: absolute;
+    top: 200px;
+
+
+}
+
+.table_compte td,
+.table_compte th {
+    border: 1px solid #000000;
+    text-align: center;
+    color:red;
+}
+
+.table_compte th {
+    border-bottom: 2px solid #000000;
+    background-color: #dddddd;
+    color:green;
+}
+
+
+.header p{
+    text-align: center;
+    margin-bottom: -5px;
+}
+.header{
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 270px;
+    text-align: center;
+}
+.logo{
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 120px;
+    background: url(img/logo10.png);
+}
+.logo_faculte{
+    width: 120px;
+    height: auto;
+}
+.titres{
+    width: 630px;
+    position: absolute;
+    top: 50px;
+    left: 120px;
+    text-align: center;
+    font-size: 22px;
+}
+.signature{
+    position: absolute;
+    text-align: center;
+    left: 0;
+    bottom: 50px;
+    width: 250px;
+}
+.page_break {
+    page-break-after: always;
+}
+
+/*
+*************************
+* CSS de EtatCompte.html.twig *
+*************************
+*/

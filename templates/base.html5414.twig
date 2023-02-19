@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+
+    <head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+
+<body>
+   
+  	<header>
+
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+            
+			<a class="navbar-brand" href="{{ path('Accueil') }}" ><img src='../img/logo10.png' alt="logo"></a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active" >
+						<a class="nav-link" style="font-size:large;color:#F7FE2E" href="/Accueil">Accueil<span class="sr-only"></span></a>
+					</li>
+
+					<li class="nav-item active">
+						<a class="nav-link active" style="font-size:large;color:#F7FE2E" href="{{ path('sonata_admin_redirect') }}">Gestion</a>
+					</li>
+					
+					<li class="nav-item active">
+						<a class="nav-link active" style="font-size:large;color:#F7FE2E" href="{{ path('app_register') }}"><i class="fa fa-sign-out"></i>Inscription</a> 
+					</li>				
+
+					<li class="nav-item active">
+						<a class="nav-link active" style="font-size:large;color:#F7FE2E" href="{{ path('sky_contact') }}"><i class="fa fa-envelope fa-fw" ></i>Contact</a> 
+					</li>					
+					<li class="nav-item active">
+						<a class="nav-link active" style="font-size:large;color:#F7FE2E" href="{{ path('app_login') }}" ><i class="fa fa-user "></i> Login</a> 
+					</li>					
+				</ul>
+					
+					
+				<!-- Search -->
+				<ul class="nav navbar-nav navbar-right">
+						
+					<form class="form-inline" role="search">
+						{# <input type="text" class="form-control"> #}
+						{# <button type="submit" class="btn btn-secondary">Recherche</button> #}
+					</form>
+				</ul>
+			</div>
+		</nav>
+	</header>
+    
+	
+		<section id="cover">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-2 col-xs-12">
+						<p class="lead home-left">
+						Plaisir <br>
+						de <br>
+						Piloter <br>
+						</p>
+					</div>
+
+					<div class="col-md-10 col-xs-12">
+						<p class="home-right" >
+										
+							{% block contact %}
+							{% endblock contact %}  
+														
+							<main role="main" class="container main">
+									{% block body %}
+							{#	{% include 'flash_messages.html.twig' %} #}
+        {% include "_partials/_nav.html.twig" %}
+        
+		{% if app.user and app.user.isVerified == false %}
+			<div class="alert alert-warning alert-dismissible" role="alert">
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				<div class="alert-message">
+					<strong>Votre compte n'est pas activé</strong>, <a href="{{ path('resend_verif') }}">renvoyer le lien d'activation</a>
+				</div>
+			</div>
+		{% endif %}
+
+		{% include "_partials/_flash.html.twig" %}
+		
+{% endblock %}
+
+        {% include "_partials/_footer.html.twig" %}
+								
+								
+	
+
+								
+							</main>	
+
+							{% block fos_user_content %}
+							{% endblock fos_user_content %}
+														
+							{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+								Connecté en tant que ICI: {{ app.user.username }} 
+								<br>
+									<a href="{{ path('app_logout') }}">Déconnexion</a>
+							{% else %}
+
+							{% endif %}
+
+					</div>
+				</div>                    
+			</div>                    	                                            
+		</section>
+	
+        
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+
+<footer>
+    <!-- Placez ici le contenu du pied de page -->
+    
+</footer>			
+
+
+
+
+
+<p>
+<a href="http://jigsaw.w3.org/css-validator/check/referer">
+    <img style="border:0;width:88px;height:31px"
+        src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+        alt="CSS Valide !" />
+    </a>
+</p>	
+        
+</body>
+
+</html>
+
+

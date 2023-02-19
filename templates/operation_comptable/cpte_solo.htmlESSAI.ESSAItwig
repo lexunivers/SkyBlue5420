@@ -1,0 +1,42 @@
+{# {% extends "layout.html.twig" %} #}
+{% extends '@SonataAdmin/standard_layout.html.twig' %} 
+
+{% block sonata_admin_content %} 
+    {#Your content here#}
+
+{# {% block bodycompte %} #}
+
+     {#   {% block stylesheets %} #}
+     {#       {{ encore_entry_link_tags('app') }}#} 
+         
+     {#   {% endblock %}#}
+
+			<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+			<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>  		
+<div class="container">
+  <br />		
+
+					<div class="row">
+						<div class="col-8">
+						<div class="form-group" id="user">
+								<div class="col-sm-9">
+									<div><strong>{{ form_widget(formComptable.user, {'label' : 'Pilote', 'attr' : { 'class' : 'user' }}) }}</strong></div>  
+								
+								{#<a button class="btn btn-danger" role="button" aria-pressed="true" href:'{{ path('cpte_solo_afficher', {'user':formComptable.user}) }} ">Valider</a> #}
+		{#{{ form_row(formComptable.valider, {'attr': {'class': 'btn btn-success'}}) }} #}
+		
+		{#, href:"{{ path('cpte_solo_afficher', {'user':user}) }}" }} )}}}#}
+		
+		
+		<h3>Membre choisi</h3>
+
+		{{dump(formComptable.user)}}		
+   <a button class="btn btn-success" role="button" aria-pressed="true" href="{{ path('Affichersolo', {'id': 'user' }) }}">Valider/Modifier</a> 
+
+								</div>
+						</div>
+					</div>
+
+
+
+{% endblock sonata_admin_content %}

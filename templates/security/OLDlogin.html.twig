@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+<!-- Section: Design Block -->
+<Section>
+
+<div class="container  col-sm-6 pt-5 my-5 border bg-glass ">
+  <div class="container-fluid col-md-10">
+    <div class="row">
+ 			<div >
+				<p class="h1" style="color:#c6ff00">Login</p>
+			</div>	
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="form-outline">
+			
+        <form method="post">
+            {% if error %}
+              <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <div class="form-outline mb-3" >				
+					    <label for="inputUsername" class="fs-4">Username</label>
+					    <input type="text" value="{{ last_username }}" class="fs-4" style="font-size:large;color:#194a8d" name="username" placeholder="Nom"   id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+            </div>
+              <!-- Password input -->
+            <div class="form-outline mb-3">
+				      <label for="inputPassword" class="fs-4">Mot de Passe</label>
+				      <input type="password" name="password" class="fs-4" style="font-size:large;color:#194a8d" placeholder="Mot de Passe" id="inputPassword" class="form-control" autocomplete="password" required>
+            </div>
+
+				    <input type="hidden" name="_csrf_token"
+					   value="{{ csrf_token('authenticate') }}">
+
+       	 		
+                  <!-- Register buttons -->
+				<button class="btn btn-primary btn-block btn-large" type="submit">
+					Me Connecter
+				</button>
+
+ 
+                <a button href="{{ path('app_register') }}" class="btn btn-primary btn-block btn-large mt-2">M'inscrire</button></a>
+                <a button type="submit" href="{{ path('forgotten_password') }}" class="btn btn-primary btn-block btn-large mt-2">Mot de passe oublié</button></a>
+
+			</form>
+
+
+      </div>
+    </div>
+      </div>
+    </div>
+</Section>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+{% endblock %}
+

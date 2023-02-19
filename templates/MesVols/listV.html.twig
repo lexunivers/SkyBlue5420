@@ -1,0 +1,116 @@
+{% block body %}
+
+<body>
+<style>
+    * {
+        font-family: DejaVu Sans, sans-serif;
+
+    }
+ 
+    .table_vol {
+        width: 1020px;
+        position: absolute;
+        top: 200px;
+    }
+ 
+    .table_vol td,
+    .table_vol th {
+        border: 1px solid #000000;
+        text-align: center;
+    }
+ 
+    .table_vol th {
+        border-bottom: 2px solid #000000;
+        background-color: #dddddd;
+    }
+    .header p{
+        text-align: center;
+        margin-bottom: -5px;
+    }
+    .header{
+        position: absolute;
+        top: 0;
+        right: -20px;
+        width: 270px;
+        text-align: center;
+    }
+    .logo{
+        position: absolute;
+        top: 0;
+        left: -20px;
+        width: 120px;
+    }
+    .logo_faculte{
+        width: 120px;
+        height: auto;
+    }
+    .titres{
+        width: 630px;
+        position: absolute;
+        top: 50px;
+        left: 120px;
+        text-align: center;
+        font-size: 22px;
+    }
+    .signature{
+        position: absolute;
+        text-align: center;
+        left: 0;
+        bottom: 50px;
+        width: 250px;
+    }
+    .page_break {
+        page-break-after: always;
+    }
+</style>
+<body>
+	<img width="200px;" src="../public/img/logo10.png" alt="Mon logo8">
+
+	<div class="row">
+
+		<h5>Compte de : {{app.user.firstname}} {{app.user.lastname}}</h5>	  
+		<h5>N° Pilote : {{app.user.id}} </h5>					
+		<h5>N°Comptable : {{app.user.comptepilote.id}}
+		
+
+	<div class="row">							
+		<div class="col-5">
+			<h3 align ="center">Liste de mes Vols au : {{'now'|format_datetime(locale='fr') }}</h3>
+		</div>
+	</div>
+				<table class="table_vol" cellspacing="0">
+					<thead>
+						<tr class="table-primary">
+						  <th>Pilote</th>						
+						  <th>Date</th>
+						  <th>Avion</th>
+						  <th>Vol</th>
+						  <th>Instructeur</th>
+						  <th>Nature</th>
+						  <th>Durée</th>
+						  <th>Tarif</th>
+						  <th>€uros</th>
+						</tr>
+					</thead>					  
+							<tbody>							
+								{% for vol in vols%}
+									<tr style="font-size:12px;color:#3774f7;">
+					   
+									   <td>{{ vol.user}}</td>
+									   <td>{{ vol.datevol|date('d/m/Y') }}</td>
+									   <td>{{ vol.avion }}</td>
+									   <td>{{ vol.typevol }}</td>
+									   <td>{{ vol.instructeur }}</td>
+									   <td>{{ vol.naturevol}}</td>
+									   <td>{{ vol.dureeduvol | date('H:i') }}</td>
+									   <td>{{ vol.tarifapplicable | number_format(2, '.', ',') }}</td>
+									   <td>{{ vol.montantfacture | number_format(2, '.', ',') }}</td>
+								   </tr>
+
+								{% endfor %}
+							</tbody>						
+	</div>
+</body>
+</html>
+
+{% endblock body %}

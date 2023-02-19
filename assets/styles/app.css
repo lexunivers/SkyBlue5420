@@ -1,0 +1,130 @@
+/*
+*************************
+* CSS de Base.html.twig *
+*************************
+*/
+
+  @font-face {
+    font-family: 'Roboto-Regular';
+    font-weight: 24px;
+    font-style: normal;
+    color: red;
+    src: url(/assets/styles/fonts/Roboto-Regular.ttf);
+  
+  }  
+
+  @font-face {
+    font-family: 'cac_champagne-webfont';
+    font-weight: 30px;
+    font-style: normal;
+    src: url(/assets/styles/fonts/cac_champagne-webfont.ttf);
+  }
+  
+  html,body {
+    height: 100%;
+    /*font-size: 18px;*/
+    font-family: 'Roboto-Regular';
+  }
+  
+ /* span{*/
+/* font-weight: bold; /*Les textes seront en gras*/
+   /* background-color: transparent; /*Fond des span jaune*/
+  /*  color: rgb(246, 230, 8); /*Couleur du texte noire*/
+/*}*/
+
+  #cover {
+    height: 100%;
+   /* color: rgb(23, 1, 1);*/
+    background: url(img/aeroporttaille.jpg) center;
+    background-size: cover;
+  }
+  
+  .home-left {
+    padding: 14rem 20rem 13rem 3rem;
+    font-family: 'cac_champagne-webfont';
+    font-size: 5rem;
+    color:deepskyblue;
+    background: rgba(0, 0, 0, 0.4);
+  }
+  
+  .home-right {
+    font-family: 'Roboto-Regular';
+    /*font-size: 125%;*/
+    margin-top: 245px;
+    margin-left: 350px;
+    text-align: center;
+  }
+  
+  .btn-lg {
+    font-family: 'Roboto-Regular';
+    background-color: transparent;
+    border-radius: 5px;
+    border: 2px solid rgba(2, 90, 165, 1);
+    transition: 0.3s;
+    
+  }
+  
+  .btn-lg:hover,
+  .btn-lg:focus,
+  .btn-lg:active {
+    background-color: rgba(2, 90, 165, 0.5);
+    border: 1px solid rgba(2, 90, 165, 1);
+    transition: 0.5s;
+  }
+  
+  header {
+   /* background-color: rgba(2, 90, 165, 0.5);*/
+    /*color:rgba(201, 76, 76, 0.6);*/
+
+    font-family: 'Roboto-Regular';
+   /* font-size: 22px;*/
+    height: auto;
+    padding: 1px 0;
+    border-bottom: 1px solid #000;
+    position: relative;
+  
+  }
+
+
+  header .logo h2 {
+    font-size: 30px;
+  }
+  
+  header nav .nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0;
+  }
+  
+  header nav .nav-list .list a {
+
+    display: block;
+    padding: 15px 0;
+    margin: 9px 0;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  
+  
+  @media (max-width: 575px) {
+    header nav .nav-list {
+      display: block;
+      text-align: center;
+      padding: 0;
+    }
+    header .logo {
+      text-align: center;
+    }
+    header i-icon {
+      display: block;
+    }
+  }
+  /*
+  ********************************
+  * Fin du CSS de Base.html.twig *
+  ********************************
+  */
+
+

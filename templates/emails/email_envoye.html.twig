@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation{% endblock %}
+
+{% block body %}
+<!-- Section: Design Block -->
+<Section>
+
+
+<div class="container  col-sm-6 pt-5 my-5 border bg-glass ">
+  <div class="container-fluid col-md-10">
+    <div class="row">
+ 			<div >
+				<p class="h1" style="color:#c6ff00">Confirmation</p>
+			</div>	
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="form-outline">
+{% for message in app.flashes('notice') %}
+    <div class="flash-notice">
+    <h4>Un message vous a été envoyé</h4>
+        {{ message }}
+    </div>
+    dump{{message}}
+{% endfor %}
+
+          <a href="{{ path('Accueil') }}" class="btn btn-primary btn-block btn-large mt-2">OK</a>
+          </div>
+          </div>
+          </div>
+</Section>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+{% endblock %}

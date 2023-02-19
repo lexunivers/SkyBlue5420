@@ -1,0 +1,171 @@
+{% extends 'layout.html.twig' %}
+{% form_theme formVol 'bootstrap_5_layout.html.twig' %}
+{% block fos_user_content %}
+{% include "_partials/_entete.html.twig" %}
+
+  
+				<div class="row">
+						<div class="col-12">
+                        
+                        	<h2 style="color:red;">Attention :</h2>
+							<div class="card bg-warning text-white">	
+                                <div class="card-body"><h5> Vous faites un circuit ? Ex: Marseille->Aix Les Milles->Avignon->Marseille, il y a 3 vols à enregistrer</h5></div>							
+                            </div>
+						 
+                        </div>
+
+				</div>
+
+                <hr>
+    {#<div class="row">#}
+		{#<div class="col-12">#}
+		{#	<div class="card bg-danger text-white text-left">#}
+		{#		<span class="bold">Attention ! Vous faites un circuit ? Ex: Marseille->Aix Les Milles->Avignon->Marseille, il y a 3 vols à enregistrer</span>#}
+		{#	</div> #}
+		{#</div>#}
+	{#</div>#}			
+	
+<div class="container" style="background-color:#436c99;">
+	<br>				
+        {{ form_start(formVol) }}
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group text-white" id="user">
+						<div class="col-sm-9">
+							<div><strong>{{ form_row(formVol.user, {'label' : 'Pilote', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+						</div>
+					</div>
+
+					<div class="form-group text-white" id="datevol" >
+						<div class="col-sm-9">
+							<div><strong> {{ form_row(formVol.datevol,  {'label' : 'Date du Vol', 'attr' : { 'class' : 'datepicker' }}) }}</strong></div>
+						</div>			
+					</div>	
+				</div>
+	
+				<div class="col-sm-4">
+					<div class="form-group text-white" id="avion">
+						<div class="col-sm-8">
+							<div><strong>{{ form_row(formVol.avion) }}</strong></div>
+						</div>
+					</div>							
+					<div class="form-group text-white" id="typevol">
+						<div class="col-sm-8">			
+							<div><strong>{{ form_row(formVol.typevol, {'label' : 'Type de Vol', 'attr' : { 'class' : 'vol' } }) }}</strong></div>
+						</div>		
+					</div>							
+					<div class="form-group text-white" id="instructeur">
+						<div class="col-sm-8">			
+							<div><strong>{{ form_row(formVol.instructeur) }}</strong></div>
+						</div>
+					</div>							
+					<div class="form-group text-white" id="naturevol">
+						<div class="col-sm-8">			
+							<div><strong>{{ form_row(formVol.naturevol, {'label' : 'Nature du Vol', 'attr' : { 'class' : 'vol' }}) }}</strong></div>
+						</div>
+					</div>
+				</div>						
+				<div class="col-sm-4">
+					<div class="form-group text-white" id="lieuDepart">  
+						<div class="col-sm-12">
+							<div><strong>{{ form_row(formVol.lieuDepart, {'label' : 'Départ de:', 'attr' : { 'class' : 'vol' }}) }}</strong></div>
+								<p class="text-white">Formule Rapide. 1 seule case à cocher</p>
+									<div class="form-check-inline text-white">
+									  <label class="form-check-label"  for="App_entity_vol_lieuDepart">
+										<input type="checkbox" class="form-check-input" id="App_entity_vol_lieuDepart" name="App_entity_vol[lieuDepart]" value="270">Marseille
+									  </label>
+									</div>
+									<div class="form-check-inline text-white">
+									  <label class="form-check-label" for="App_entity_vol_lieuDepart">
+										<input type="checkbox" class="form-check-input" id="App_entity_vol_lieuDepart" name="App_entity_vol[lieuDepart]" value="261">Aix Les Milles
+									  </label>
+									</div>
+									<div class="form-check-inline text-white">
+									  <label class="form-check-label" for="App_entity_vol_lieuDepart">
+										<input type="checkbox" class="form-check-input" id="App_entity_vol_lieuDepart" name="App_entity_vol[lieuDepart]" value="298">Berre-La Fare
+									  </label>
+									</div>
+									<div class="form-check-inline text-white">
+									  <label class="form-check-label" for="App_entity_vol_lieuDepart">
+										<input type="checkbox" class="form-check-input" id="App_entity_vol_lieuDepart" name="App_entity_vol[lieuDepart]" value="279">Avignon
+									  </label>
+									</div>							
+                        </div>
+                    </div>	 
+                    <div class="form-group text-white" id="heureDepart">
+                        <div class="col-sm-12">
+                            <div><strong>{{ form_row(formVol.heureDepart, {'label' : 'Heure de Départ:', 'attr' : { 'class' : 'vol' }}) }}</strong></div>
+                        </div>
+                    </div>
+					<div class="form-group text-white" id="lieuArrivee">
+						<div class="col-sm-12">
+							<div><strong>{{ form_row(formVol.lieuArrivee, {'label' : 'Lieu d\'Arrivée:', 'attr' : { 'class' : 'vol' }}) }}</strong></div>
+								<p class="text-white">Formule Rapide. 1 seule case à cocher</p>
+									 <div class="form-check-inline">
+									    <label class="form-check-label" for="App_entity_vol_lieuArrivee">
+										<input type="checkbox" class="form-check-input" id="App_entity_vol_lieuArrivee" name="App_entity_vol[lieuArrivee]" value="270">Marseille
+									    </label>
+									</div>
+									<div class="form-check-inline text-white">
+									  <label class="form-check-label" for="App_entity_vol_lieuArrivee">
+										<input type="checkbox" class="form-check-input" id="App_entity_vol_lieuArrivee" name="App_entity_vol[lieuArrivee]" value="261">Aix Les Milles
+									  </label>
+									</div>
+									<div class="form-check-inline text-white">
+									  <label class="form-check-label" for="App_entity_vol_lieuArrivee">
+										<input type="checkbox" class="form-check-input" id="App_entity_vol_lieuArrivee" name="App_entity_vol[lieuArrivee]" value="298">Berre-La Fare
+									  </label>
+									</div>
+									<div class="form-check-inline">
+									  <label class="form-check-label" for="App_entity_vol_lieuArrivee">
+										<input type="checkbox" class="form-check-input" id="App_entity_vol_lieuArrivee" name="App_entity_vol[lieuArrivee]" value="279">Avignon
+									  </label>
+									</div>
+                    <div class="form-group text-white" id="heureArrivee">
+                        <div class="col-sm-12">
+                            <div><strong>{{ form_row(formVol.heureArrivee, {'label' : 'Heure d\'Arrivee:', 'attr' : { 'class' : 'vol' }}) }}</strong></div>
+                        </div>
+                    </div>
+
+							</div>
+						</div>
+
+			
+				</div>
+			</div>
+		{#</div>#}
+
+
+
+
+
+
+		<link rel="stylesheet" href="/redmond/jquery-ui.css" type="text/css">
+	  	<script src="/js/jquery-3.4.1.js"></script>  
+	  	<script src="/jquery-ui/jquery-ui.js"></script>
+	  	<script src="/Delta/js/custom.js"></script>
+	  	<script src="/Delta/js/jquery.imgpreload.min.js"></script>  
+	  	<script src="/Delta/js/jquery-ui.toggleSwitch.js"></script>
+	  	<script src="/Delta/js/modernizr-2.0.6.min.js"></script>  	
+	  	<script src="/js/jquery-ui-i18n.min.js"></script>	  
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	  
+	  <script>
+	  $( function() {
+	$.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );
+	
+    $( "#datepicker" ).datepicker();
+
+    });
+	  </script>
+
+        {{ form_widget(formVol.valider, {'attr': {'class': 'btn btn-success'}})}}
+
+	<a button class="btn btn-danger" role="button" aria-pressed="true" href="{{ path('sky_user_mesdossiers') }}">Annuler</a>
+        {# Les erreurs générales du formulaire. #}
+        {{ form_errors(formVol) }}
+        {{ form_end(formVol) }}
+    </div>
+</div>
+	</div>
+{% endblock %}

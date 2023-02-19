@@ -1,0 +1,13 @@
+sonata_user:
+    class:
+        user: App\Entity\User
+    admin:   # Admin Classes
+        user:
+            class: App\Admin\UserAdmin
+            controller: App\Controller\UserAdminController
+    resetting:
+        email:
+            address: "test@test.com"
+            sender_name: Backoffice
+    security_acl: true
+    manager_type: orm # can be orm or mongodb

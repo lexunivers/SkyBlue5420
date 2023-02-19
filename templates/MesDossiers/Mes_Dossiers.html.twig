@@ -1,0 +1,192 @@
+{% block body %}
+<!DOCTYPE html>
+{% include "_partials/mes_dossiers.html.twig" %}
+    <head>
+		{#<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>#}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+    </head>
+
+
+
+<div class="container">					
+				<div class="row">
+					<div class="col-5">
+						<h1>Mes Dossiers</h1>
+					</div>
+				</div>
+
+		<div class="row">	
+
+				<div class="col-xl-3 col-md-4 col-6" title="Mon Image 1" href="#">
+
+					<div class="overlay-image"><a href="{{path('user_profile_voir')}}">
+						<img class="image" src="{{ asset('img/bleuviolet.png') }}" alt="Alt text" />
+							<div class="normal">
+								<div class="text">Mon Profil</div>
+							</div>
+					<div class="hover">
+						<div class="text">Voir / Modifier</div>
+					</div>
+					</a></div>
+				</div>
+		
+				<div class="col-xl-3 col-md-4 col-6" title="Image 2" href="#">
+							<div class="overlay-image"><a href="{{ path('sky_compte') }}">
+								<img class="image" src="{{ asset('img/jaune.png') }}" alt="Alt text" />
+									<div class="normal">
+										<div class="text">Mon Compte</div>
+									</div>
+							<div class="hover">
+								<div class="text">Voir Liste</div>
+							</div>
+							</a></div>
+				</div>
+		
+		
+				<div class="col-xl-3 col-md-4 col-6" title="Image 3">
+
+					<div class="overlay-image"><a href="#">
+						<img class="image" src="{{ asset('img/vert.png') }}" alt="Alt text" />
+							<div class="normal">
+								<div class="text">Mes Réservations</div>
+							</div>
+					<div class="hover">
+						<div class="text">réserver 1 avion</div>
+					</div>
+					</a></div>
+				</div>
+				
+				<div class="col-xl-3 col-md-4 col-6" title="Image 4" >
+
+					<div class="overlay-image"><a href="{{ path('sky_gestion_vols_list') }}">
+						<img class="image" src="{{ asset('img/bleuviolet.png') }}" alt="Alt text" />
+							<div class="normal">
+								<div class="text">Mes Vols</div>
+							</div>
+					<div class="hover">
+						<div class="text">Voir / Ajouter</div>
+					</div>
+					</a></div>
+				</div>			
+
+				<div class="col-xl-3 col-md-4 col-6" title="Image 5" >
+
+					<div class="overlay-image"><a href="{{ path('sky_gestion_vol') }}">
+						<img class="image" src="{{ asset('img/vert.png') }}" alt="Alt text" />
+							<div class="normal">
+								<div class="text">Enregistrer 1 Vol</div>
+							</div>
+					<div class="hover">
+						<div class="text">Voir / Modifier</div>
+					</div>
+					</a></div>
+				</div>
+			
+				<div class="col-xl-3 col-md-4 col-6" title="Image 6" >		
+					<div class="overlay-image"><a href="#">
+						<img class="image" src="{{ asset('img/rouge.png') }}" alt="Alt text" />
+							<div class="normal">					
+								<div class="text">scheduler</div>
+							</div>
+						<div class="hover">
+						<div class="text">Voir / Régler</div>
+					</div>		
+							</a>
+					</div>
+				</div>
+				
+				
+				<div class="col-xl-3 col-md-4 col-6" title="Image 7">
+
+					<div class="overlay-image"><a href="#">
+						<img class="image" src="{{ asset('img/bleuviolet.png') }}" alt="Alt text" />
+							<div class="normal">
+								<div class="text">Cotisation Annuelle</div>
+							</div>
+					<div class="hover">
+						<div class="text">Voir/Régler</div>
+					</div>
+					</a></div>
+				</div>		
+
+				<div class="col-xl-3 col-md-4 col-6" title="Image 8" >
+
+					<div class="overlay-image"><a href="{{ path('sky_dernier_vol') }}">
+						<img class="image" src="{{ asset('img/jaunefonce.png') }}" alt="Alt text" />
+							<div class="normal">
+								<div class="text">Enregistrer 1 vol</div>
+							</div>
+					<div class="hover">
+						<div class="text">vol</div>
+					</div>
+					</a></div>
+				</div>
+
+				<div class="col-xl-3 col-md-4 col-6" title="Image 9" >		
+					<div class="overlay-image"><a href="#">
+						<img class="image" src="{{ asset('img/bleu.png') }}" alt="Alt text" />
+							<div class="normal">					
+								<div class="text">Changer Mon Mot de Passe</div>
+							</div>
+						<div class="hover">
+						<div class="text"></div>
+					</div>		
+							</a>
+					</div>
+				</div>
+				
+				
+				<div class="col-xl-3 col-md-4 col-6" title="Image 10">
+
+					<div class="overlay-image"><a href="#">
+						<img class="image" src="{{ asset('img/rouge.png') }}" alt="Alt text" />
+							<div class="normal">
+								<div class="text">Régler Mes Factures</div>
+							</div>
+					<div class="hover">
+						<div class="text">Versement Carte Bancaire</div>
+					</div>
+					</a></div>
+				</div>		
+
+				<div class="col-xl-3 col-md-4 col-6" title="Image 11" >
+
+					<div class="overlay-image"><a href="#">
+						<img class="image" src="{{ asset('img/jaune.png') }}" alt="Alt text" />
+							<div class="normal">
+								<div class="text">Planning</div>
+							</div>
+					<div class="hover">
+						<div class="text">Mon Dossier</div>
+					</div>
+					</a></div>
+				</div>
+
+				<div class="col-xl-3 col-md-4 col-6" title="Image 12" href="">
+
+					<div class="overlay-image"><a href="#">
+						<img class="image" src="{{ asset('img/vert.png') }}" alt="Alt text" />
+							<div class="normal">
+								<div class="text">DatePicker</div>
+							</div>
+					<div class="hover">
+						<div class="text">vos Avis</div>
+					</div>
+					</a></div>
+				</div>
+		</div>
+		   {#@include('flashy::message')#}
+</div>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    
+    <!-- Include Flashy default partial -->
+{# {{ include('@MercurySeriesFlashy/flashy.html.twig') }} #}
+	
+{% endblock body %}

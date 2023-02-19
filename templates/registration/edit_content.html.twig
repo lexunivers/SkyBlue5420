@@ -1,0 +1,181 @@
+
+
+{% block fos_user_content %}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+		
+  <br />
+<div class="container">
+
+			  <div class="row">
+					<div class="col-8">
+						<h5>Compte de : {{app.user.firstname}} {{app.user.lastname}}</h5> 
+						<h5>N° Pilote : {{app.user.id}} </h5>					
+						<h5>N°Comptable : {{app.user.comptepilote.id}}</h5>					
+					</div>
+
+				
+					<div class="col-4">
+												{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+												<h6>Connecté en tant que: {{ app.user }}</h6> 
+
+												<a button class="btn btn-outline-primary" role="button" href="{{ path('app_logout') }}">Déconnexion</a>
+												<a href="{{ path('sky_user_mesdossiers') }}" class="btn btn-outline-primary" role="button" aria-pressed="true">Mes Dossiers</a>												
+												{% else %}
+
+												{% endif %}				
+					</div>
+				</div>
+
+					<div class="row">
+							<div>
+								<h5>{# On affiche tous les messages flash dont le nom est « notice » #}
+							
+									{% for message in app.session.flashbag.get('notice') %}
+										<div class="alert alert-danger">
+												<p>Message flash : {{ message }}</p>
+										</div>
+									  {% endfor %}
+								</h5>
+							</div>
+					</div>
+  <br />				
+			<div class="row">
+
+				<div class="col-5">
+					<h5><div class="card bg-primary text-white text-center">Modifier Mes Données</div></h5>
+				</div>
+			</div>
+  <br />
+
+			<div class="row">
+
+				<div class="col-sm-3">
+
+    {{ form_start(form) }}
+
+				
+
+						<div class="form-group" id="user">
+								<div class="col-sm-12 ">
+									<div><strong>{{ form_row(form.username, {'label' : 'Nom Utilisateur', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>
+
+						<div class="form-group" id="email">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.email, {'label' : 'Courriel', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>						
+
+						<div class="form-group" id="phone">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.phone, {'label' : 'Téléphone', 'attr' : { 'class' : 'user' }}) }}</strong></div> 
+								</div>
+						</div>	
+
+				</div>	
+				
+				<div class="col-sm-3">				
+						<div class="form-group" id="firstname">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.firstname, {'label' : 'Prénom', 'attr' : { 'class' : 'user' }}) }}</strong></div> 
+								</div>
+						</div>
+						
+						<div class="form-group" id="lastname">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.lastname, {'label' : 'Nom', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>
+						
+						<div class="form-group" id="datenaissance">
+							<div class="col-sm-12">
+							
+								<div><strong>{{ form_row(form.dateOfBirth, {'label' : 'Date de Naissance', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+							ex: 12 mai 2000
+							</div>			
+						</div>
+
+						<div class="form-group" id="job">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.job, {'label' : 'Activité', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>
+						
+				</div>	
+
+	
+				<div class="col-sm-3">	
+						
+						<div class="form-group" id="residence">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.residence, {'label' : 'Résidence', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>
+
+						<div class="form-group" id="rue">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.rue, {'label' : 'Rue', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>
+
+						<div class="form-group" id="numero">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.numero, {'label' : 'Numéro', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>						
+
+						<div class="form-group" id="ville">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.ville, {'label' : 'Ville', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>	
+						<div class="form-group" id="codepostal">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.codepostal, {'label' : 'Code Postal', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>
+						
+				</div>
+
+			
+				<div class="col-sm-3">
+				
+						<div class="form-group" id="avatar">
+								<div class="col-sm-12 ">
+									<div><strong>{{ form_row(form.imageFile, {'label' : 'Insérer/Changer Votre Photo ', 'attr' : { 'class' : 'user' }}) }}</strong></div> 
+								</div>
+						</div>		
+						
+						<div class="col-md-4 col-sm-6 col-xs-12">
+							<div class="text-center">
+							
+								{% if vich_uploader_asset(app.user, 'imageFile') is null %}
+									<img src="{{ asset('images/default/avatar.jpg') }}" alt="Symfony!" />  
+								
+								{% else %}
+
+								<a href="{{ vich_uploader_asset(app.user, 'imageFile') | imagine_filter('my_thumb')  }}"></a>
+									<img src="{{  vich_uploader_asset(app.user, 'imageFile') | imagine_filter('my_thumb')  }}"> 
+								
+									<h6>{{app.user.username}}</h6>
+								
+								{% endif %}   
+							</div>					
+						</div>
+				</div>	
+</div>
+
+						<div class="col-md-9 col-sm-6 col-xs-12">						
+						<button type="submit" id="fos_user_profile_edit" name="fos_user_profile_edit[valider]" class="btn btn-success btn">Valider</button>						
+						<a href="{{ path('sky_user_mesdossiers') }}" class="btn btn-outline-danger" role="button" aria-pressed="true">Annuler</a>
+						</div>
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+
+	{{ form_end(form) }}		
+
+{% endblock fos_user_content%}

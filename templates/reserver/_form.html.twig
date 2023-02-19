@@ -1,0 +1,45 @@
+{{ form_start(form) }}
+ {#  {{ form_widget(form) }}  #}
+<div class="row">
+<div class="form-group" id="Avion">
+	<div class="col-sm-9">
+		<div><strong>{{ form_row(form.avion, {'label' : 'avion', 'attr' : { 'class' : 'avions' }}) }}</strong></div>  
+	</div>
+</div>
+</div>
+
+<div class="row">
+
+<div class="form-group" id="instructeur">
+	<div class="col-sm-9">
+		<div><strong>{{ form_row(form.instructeur, {'label' : 'instructeur', 'attr' : { 'class' : 'instructeur' }}) }}</strong></div>  
+	</div>
+</div>
+</div>
+<div class="row">
+
+</div>
+<div class="row">
+
+</div>
+
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group" id="start">
+						<div class="col-sm-9">
+							<div><strong>{{ form_row(form.start, {'label' : 'début', 'attr' : { 'class' : '' }}) }}</strong></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">					
+				<div class="col-sm-4">
+					<div class="form-group" id="end">
+						<div class="col-sm-9">
+							<div><strong>{{ form_row(form.end, {'label' : 'fin', 'attr' : { 'class' : '' }}) }}</strong></div>
+						</div>
+					</div>
+				</div>
+			</div>					
+   <button type="submit" class="btn btn-primary">{{ button_label|default('Valider') }}</button>
+{{ form_end(form) }}

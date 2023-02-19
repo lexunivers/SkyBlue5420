@@ -1,0 +1,50 @@
+sonata_admin:
+
+    default_admin_services:
+        #security_handler: App\Security\Handler\MySecurityHandler
+    security:
+        handler: sonata.admin.security.handler.acl
+
+        # this service MUST implement ``Sonata\AdminBundle\Util\AdminAclUserManagerInterface``.
+        #acl_user_manager: App\Manager\AclUserManager
+
+        role_admin: ROLE_ADMIN
+        role_super_admin: ROLE_SUPER_ADMIN
+
+        # acl security information
+        information:
+            GUEST:    [VIEW, LIST]
+            STAFF:    [EDIT, HISTORY, LIST, CREATE]
+            EDITOR:   [OPERATOR, EXPORT]
+            ADMIN:    [MASTER]
+            PILOTE:   [MASTER]
+
+        # permissions not related to an object instance and also to be available when objects do not exist
+        # the DELETE admin permission means the user is allowed to batch delete objects
+        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
+
+        # permission related to the objects
+        object_permissions: [VIEW, EDIT, HISTORY, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+    
+    title: 'Sonata Admin'
+    dashboard:
+        blocks:
+            -  
+                position: left
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [sonata_user, Comptabilité, Gestion Des Vols,  Localisation ]
+                    
+            -
+                position: right
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [Parc Avions, Formation, Reservation ]
+
+
+
+sonata_block:
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+

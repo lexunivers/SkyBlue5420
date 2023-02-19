@@ -1,0 +1,185 @@
+{% block body %}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+			        {% endblock %}
+<body>
+<style>
+    * {
+        font-family: DejaVu Sans, sans-serif;
+
+    }
+ 
+    .table_compte {
+        width: 1020px;
+        position: absolute;
+        top: 200px;
+
+ 
+    }
+ 
+    .table_compte td,
+    .table_compte th {
+        border: 1px solid #000000;
+        text-align: center;
+		color:blue;
+    }
+ 
+    .table_compte th {
+        border-bottom: 2px solid #000000;
+        background-color: #dddddd;
+    }
+
+	
+    .header p{
+        text-align: center;
+        margin-bottom: -5px;
+    }
+    .header{
+        position: absolute;
+        top: 0;
+        right: -20px;
+        width: 270px;
+        text-align: center;
+    }
+    .logo{
+        position: absolute;
+        top: 0;
+        left: -20px;
+        width: 120px;
+    	background: url(img/logo10.png);
+    }
+    .logo_faculte{
+        width: 120px;
+        height: auto;
+    }
+    .titres{
+        width: 630px;
+        position: absolute;
+        top: 50px;
+        left: 120px;
+        text-align: center;
+        font-size: 22px;
+    }
+    .signature{
+        position: absolute;
+        text-align: center;
+        left: 0;
+        bottom: 50px;
+        width: 250px;
+    }
+    .page_break {
+        page-break-after: always;
+    }
+</style>
+<body>
+	<img width="200px;" src="assets/styles/img/logo10.png" alt="Mon logo10">
+
+<!--<div class="logo10" <a img src="{{ 'styles/img/logo10.png'}}" alt="logo!"/></div>-->
+	<div class="row">
+
+		<h5>Compte de : {{app.user.firstname}} {{app.user.lastname}}</h5>	  
+		<h5>N° Pilote : {{app.user.id}} </h5>					
+		<h5>N°Comptable : {{app.user.comptepilote.id}} - Edité le : {{ "now"|date("d/m/Y", "Europe/Paris") }} {#{{ 'now' | localizeddate('full', 'none') }} à {{ 'now' | localizeddate('none', 'short') }}#} </h5>				
+					
+
+
+	<div class="row">							
+		<div class="col-5">
+			<h3 align ="center">Etat de Mon Compte arrêté au :{{ "now"|date("d/m/Y", "Europe/Paris") }} {# {{ 'now' | localizeddate('full', 'none') }}  ({{ 'now' | localizeddate('none', 'short') }})#}</h3>
+		</div>
+	</div>
+
+				<table class="table_compte" cellspacing="0">
+								<thead>
+								  <tr class="table-primary">
+																												
+										<th>Date</th>
+										<th>Libelle</th>																
+										<th>N°Ecriture</th>
+										<th>Débit</th>														
+										<th>Credit</th> 
+										<th>Solde</th>
+ 										
+									</tr>
+								</thead>
+
+								{% for sommeTotale in listEcritures %}
+									<tr class="table_compte"  style="font-size:12px;color:#003366;" >								
+
+										<td>{{ sommeTotale.operdate|date('d/m/Y')}}</td>
+										<td style="text-align:left;font-size: 12px; font-weight: bold;color: #3774f7;">{{ sommeTotale.libelle}}</td>
+										<td>{{ sommeTotale.id}}</td>								
+
+												{% if sommeTotale.opersensmt == 0 %}
+														
+													<td style="text-align:center;font-size: 13px; font-weight: bold;color: #bc2a4d;">{{ sommeTotale.opermontant | number_format(2, '.', ',')}}</td>
+													<td></td>	
+															
+												{% else %}
+																	
+													<td></td>														
+													<td style="text-align:center;font-size: 13px; font-weight: bold;color:#1db805;">{{sommeTotale.opermontant| number_format(2, '.', ',')}}</td>														
+															
+												{% endif %}							
+										<td></td>
+									</tr>
+								
+								{% endfor %}								
+
+										{# affichage des sommes #}
+															
+											<td></td>
+											<td></td>
+											<td style="text-align:right;font-size: 15px; font-weight: bold;color: #010700;">Totaux:</td>
+
+
+													{% set soldeDebiteur = 0 %}
+													{% set soldeCrediteur = 0 %}
+													{% set credit = 0 %}
+													{% set debit = 0 %}
+
+
+															{% for key, montantdebit in montantdebit %}
+
+																{% for montantdebit in montantdebit %}
+																	<td span style="text-align:center;font-size: 15px; font-weight: bold;color: #bc2a4d;">{{montantdebit| number_format(2, '.', ',')}}</td>					
+																	{% set debit = montantdebit %}
+																{% endfor %}
+																										
+															{% endfor %}
+
+															
+															{% for key, montantcredit in montantcredit %}
+
+																{% for montantcredit in montantcredit %}
+
+																	<td style="text-align:center;font-size: 15px; font-weight: bold;color:#1db805;">{{montantcredit| number_format(2, '.', ',')}}</td>				
+																	{% set credit = montantcredit %}
+																
+																{% endfor %}
+															
+																	{% if debit >credit %}				
+																		{% set soldeDebiteur = debit-credit %}
+																	{% else %}
+																		{% set soldeCrediteur = credit - debit %}
+																	{% endif %}
+															
+															{% endfor %}
+
+																{% if credit >= debit %}														
+																	<td style="text-align:center; font-size: 15px; font-weight: bold;color:#1db805;">{{soldeCrediteur| number_format(2, '.', ',')}}</td>
+																{% elseif debit>=credit %}
+																	<td style="text-align:center; font-size: 15px; font-weight: bold;color:#bc2a4d;">{{soldeDebiteur| number_format(2, '.', ',')}}</td>
+
+																{% endif %}	
+ 
+				</table>
+	</div>
+
+    <!-- Include Flashy default partial -->
+	{#@include('flashy::message')#}
+  {#  {{ include('@MercurySeriesFlashy/flashy.html.twig') }}	 #}
+</body>
+</html>
+
+{% endblock body %}		

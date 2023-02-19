@@ -1,0 +1,42 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block body %}
+    <h1>Reservation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reserver.id }}</td>
+			</tr>
+            <tr>
+                <th>Start</th>
+                <td>{{ reserver.start ? reserver.start|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>End</th>
+                <td>{{ reserver.end ? reserver.end|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ reserver.title }}</td>
+            </tr>
+            <tr>
+                <th>ResourceId</th>
+                <td>{{ reserver.resourceId }}</td>
+            </tr>
+            <tr>
+                <th>Reservataire</th>
+                <td>{{ reserver.reservataire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('reserver_index') }}">back to list</a>
+
+    <a href="{{ path('reserver_edit', {'id': reservation.id}) }}">edit</a>
+
+    {{ include('reserver/_delete_form.html.twig') }}
+{% endblock %}

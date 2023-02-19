@@ -1,0 +1,175 @@
+{% extends 'layout.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block fos_user_content %}
+        {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        {% endblock %}
+ 		{% include "_partials/_entete.html.twig" %}
+<div class="container">
+
+
+	<div class="row">
+		<div>
+			<h5>{# On affiche tous les messages flash dont le nom est « notice » #}				
+				{% for message in app.session.flashbag.get('notice') %}
+					<div class="alert alert-danger">
+						<p>Message flash : {{ message }}</p>
+					</div>
+				  {% endfor %}
+			</h5>
+		</div>
+	</div>
+				
+			<div class="row">
+				<div class="col-5">
+					<h5><div class="card bg-warning text-white text-center">Modifier Mes Données</div></h5>
+				</div>
+			</div>
+
+
+	<div class="row">
+		<div class="col-sm-3">
+
+			{{ form_start(form, { 'action': path('user_profile_modifier'), 'attr': { 'class': 'user' }  }) }}
+				<div class="form-group" id="user">
+					<div class="col-sm-12 ">
+						<div><strong>{{ form_row(form.username, {'label' : 'Nom Utilisateur', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+					</div>
+				</div>
+
+						<div class="form-group" id="email">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.email, {'label' : 'Courriel', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>						
+
+						<div class="form-group" id="phone">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.phone, {'label' : 'Téléphone', 'attr' : { 'class' : 'user' }}) }}</strong></div> 
+								</div>
+						</div>	
+
+				</div>	
+				
+				<div class="col-sm-3">				
+						<div class="form-group" id="firstname">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.firstname, {'label' : 'Prénom', 'attr' : { 'class' : 'user' }}) }}</strong></div> 
+								</div>
+						</div>
+						
+						<div class="form-group" id="lastname">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.lastname, {'label' : 'Nom', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>
+						
+						<div class="form-group" id="datenaissance">
+							<div class="col-sm-12">
+							
+								<div><strong>{{ form_row(form.dateOfBirth, {'label' : 'Date de Naissance', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+							ex: 12/05/ 2000
+							</div>			
+						</div>
+
+						<div class="form-group" id="job">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.job, {'label' : 'Activité', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>
+						<div class="form-group" id="hobby">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.hobby, {'label' : 'hobby', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>
+
+						
+				</div>		
+				<div class="col-sm-3">						
+						<div class="form-group" id="residence">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.residence, {'label' : 'Résidence', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>
+
+						<div class="form-group" id="rue">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.rue, {'label' : 'Rue', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>
+
+						<div class="form-group" id="numero">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.numero, {'label' : 'Numéro', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>						
+
+						<div class="form-group" id="ville">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.ville, {'label' : 'Ville', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>	
+						<div class="form-group" id="codepostal">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.codepostal, {'label' : 'Code Postal', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>
+						<div class="form-group" id="pays">
+								<div class="col-sm-12">
+									<div><strong>{{ form_row(form.pays, {'label' : 'Pays', 'attr' : { 'class' : 'user' }}) }}</strong></div>
+								</div>
+						</div>						
+				</div>			
+				<div class="col-sm-3">				
+						<div class="form-group" id="avatar">
+								<div class="col-sm-12 ">
+									<div><strong>{{ form_row(form.imageFile, {'label' : 'Insérer/Changer Votre Photo ', 'attr' : { 'class' : 'user' }}) }}</strong></div> 
+								</div>
+		</div>		
+
+		<div class="row">			
+			<div class="card" style="border-radius: 15px;">
+				<div class="card-body p-4">
+					<div class="d-flex text-black">
+						<div class="flex-shrink-0">						
+							{% if vich_uploader_asset(app.user, 'imageFile') is null %}
+								<img src="{{ asset('images/default/avatar.jpg') }}"  alt="Generic placeholder image" class="img-fluid"
+								style="width: 180px; border-radius: 10px;"> />  
+										
+							{% else %}
+
+							<a href="{{ vich_uploader_asset(app.user, 'imageFile') | imagine_filter('my_thumb')  }}"></a>
+								<img src="{{  vich_uploader_asset(app.user, 'imageFile') | imagine_filter('my_thumb')  }}"> 
+										
+									<h6>{{app.user }}</h6> 
+										
+							{% endif %}   
+									
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+	<div class="row">
+		<div class="col-md-9 col-sm-6 col-xs-12">						
+			<button type="submit" id="user_profile_modifier" name="user_profile_modifier[valider]" class="btn btn-primary">Valider</button>						
+				<a href="{{ path('sky_user_mesdossiers') }}" class="btn btn-outline-danger" role="button" aria-pressed="true">Annuler</a>
+		</div>
+	</div>	
+        {% block javascripts %}
+        <!--    {{ encore_entry_script_tags('app') }} -->
+        {% endblock %}
+		
+<script>
+    $(document).ready(function() {
+        // you may need to change this code if you are not using Bootstrap Datepicker
+        $('.js-datepicker').datepicker({
+            format: 'dd-mm-yyyy'
+        });
+    });
+</script>
+	{{ form_end(form) }}		
+
+{% endblock fos_user_content%}

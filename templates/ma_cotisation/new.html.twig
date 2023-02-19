@@ -1,0 +1,68 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Cotisation Annuelle Club !{% endblock %}
+
+
+{% block body %}
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+         
+        {% endblock %}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
+			<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+			<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>  		
+		<div class="container">
+  <br />		
+					<div class="row">
+						<div class="col-8">
+							<h6>Compte de : {{app.user.firstname}} {{app.user.lastname}}</h6>	  
+							<h6>N° Pilote : {{app.user.id}} </h6>					
+							<h6>N°Comptable : {{app.user.comptepilote.id}}</h6>				
+						</div>
+						
+						<div class="col-4">
+													{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+													<h6>Membre Connecté : {{ app.user.username }}</h6> 
+
+													<a button class="btn btn-outline-primary" role="button" href="{{ path('app_logout') }}" >Déconnexion</a>
+													
+													{% else %}
+
+													{% endif %}				
+						</div>
+					</div>			
+
+					<div class="row">
+							<div><h5>{# On affiche tous les messages flash dont le nom est « notice » #}
+							
+
+								{% for message in app.session.flashbag.get('notice') %}
+										<div class="alert alert-danger">
+												<p>Message : {{ message }}</p>
+										</div>
+								{% endfor %}
+								</h5>
+							</div>
+					</div>
+<br />
+<br />
+
+    <h2>Ma Nouvelle Cotisation</h2>
+	{#	{% if editMode %} #}
+	{#		<h2> ca marche Pas! </h2>#}
+	{#	{% else %}#}
+	{#		<h2> ca marche ! </h2>#}
+	{#	{% endif %}#}
+		
+	{#	{% if OperationComptable %} #}
+	{#		<h2> {{OperationComptable}} </h2>#}
+	{#	{% else %}#}
+	{#		<h2> OperationComptable </h2>#}
+	{#	{% endif %}#}
+
+		{{ include('ma_cotisation/_form.html.twig') }}
+
+  {#  <a href="{{ path('ma_cotisation_index') }}">back to list</a> #}
+{% endblock %}

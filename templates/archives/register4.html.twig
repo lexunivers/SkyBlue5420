@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+     <meta charset="UTF-8">
+     <title>Registration Form</title>
+     	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+<div class="wrapper">
+    <h1>S'inscrire</h1>
+   <form name="registration_form" method="post">
+	<div class="form-group" style="font-size:large;color:#F7FE2E">
+    <div class="mb-3">
+        <label for="registration_form_username" class="form-label required">Username</label>
+        <input type="text" id="registration_form_username" name="registration_form[username]" required="required" maxlength="180" pattern=".{2,}" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="registration_form_firstname" class="form-label">Firstname</label>
+        <input type="text" id="registration_form_firstname" name="registration_form[firstname]" maxlength="64" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="registration_form_lastname" class="form-label">Lastname</label>
+        <input type="text" id="registration_form_lastname" name="registration_form[lastname]" maxlength="64" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label for="registration_form_email" class="form-label required">Email</label>
+        <input type="email" id="registration_form_email" name="registration_form[email]" required="required" maxlength="180" pattern=".{2,}" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="registration_form_plainPassword" class="form-label required">Password</label>
+        <input type="password" id="registration_form_plainPassword" name="registration_form[plainPassword]" required="required" autocomplete="new-password" class="form-control" />
+    </div>
+
+    {# <div class="mb-3"> #}      
+    {#    {{ form_row(registrationForm.username) }}#}
+    {# </div>#}
+
+     {#<div class="mb-3">#}     		
+     {#    {{ form_row(registrationForm.firstname) }}#}
+     {#</div>  #} 
+
+    {#<div class="mb-3">   #}      
+     {#   {{ form_row(registrationForm.lastname) }}#} 
+    {#</div>#} 
+    {# <div class="mb-3"> #}    
+      {#   {{ form_row(registrationForm.plainPassword, {
+     {#        label: 'Password'
+      {#   }) }}#} 
+     {#</div>#} 
+
+ 				    <input type="hidden" name="_csrf_token"
+					   value="{{ csrf_token('authenticate') }}">
+					   
+        <button type="submit" class="btn btn-danger">Valider</button>
+       </form>
+       {{dump()}};
+    {#{{ form_end(registrationForm) }}#}
+	</div>
+</div>		
+{% endblock %} 

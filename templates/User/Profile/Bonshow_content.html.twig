@@ -1,0 +1,97 @@
+{% trans_default_domain 'FOSUserBundle' %}
+		
+{% block body %}
+
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('bundles/skycore/css/style.css') }}" type="text/css">
+	
+	
+<div class="container">
+  	<div class="row">
+    	<h1>Mes Dossiers</h1>
+	</div>
+	
+    <div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 1" href="{{ path('fos_user_profile_edit') }}">
+	<img class="thumbnail img-responsive" src="//placehold.it/600x350.jpg/992233&text=Mes+Données"></a></div>
+
+	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 5" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/2255EE?text=Mes Vols&italic&fontsize=32"</a></div>
+		  
+    <div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 6" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF?text=Réserver&italic&fontsize=32"</a></div>
+		  
+    <div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 8" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/666/fff/000?text=Mes Données"></a></div>
+
+    <div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 10" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/EEE/992233&text=Mon+Profile"></a></div>		  
+		  
+    <div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 9" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/992233&text=Mes+Factures"></a></div>
+	  
+    <div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 11" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF&text=Réglements"></a></div>
+		  
+    <div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 12" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/DDD/FF3C00.png&text=Carnet+Vol"></a></div>
+		  
+    <div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 13" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/992233&text=Mon Compte"></a></div>
+
+		  
+	<div class="col-lg-3 col-sm-4 col-xs-6">
+		<a title="Image 2" href="{{ path('fos_user_profile_show') }}">
+			<img class="thumbnail img-responsive"
+				src="{{ asset('bundles/skycore/img/carreBleu.png') }}"> 
+			<div style="position:absolute;top:50px; width:260px; height:200px; z-index:2;font-size:140%">
+				<center><b>Mon Profile</b></center></a>						
+			</div>
+	</div>			
+	  
+    <div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 3" href="{{ path('sky_user_moncompte') }}">
+		<img class="thumbnail img-responsive"
+			src="{{ asset('bundles/skycore/img/carreVert.png') }}">
+					<div style="position:absolute;top:50px; width:260px; height:200px; z-index:2;font-size:150%">
+						<center><b>Mes Vols</b></center></a>
+					</div>
+	</div>      
+
+	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 4" href="{{ path('fos_user_profile_edit') }}">
+		<img class="thumbnail img-responsive"
+			src="{{ asset('bundles/skycore/img/carregrisclai.png') }}">
+					<div style="position:absolute;top:50px; width:260px; height:200px; z-index:2;font-size:150%">
+						<center><b>Mes Données</b></center></a>
+					</div>
+	</div>	
+	  
+	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 5" href="{{ path('fos_user_profile_edit') }}">
+		<img class="thumbnail img-responsive"
+			src="{{ asset('bundles/skycore/img/carregrisclai.png') }}">
+					<div style="position:absolute;top:50px; width:260px; height:200px; z-index:2;font-size:150%">
+						<center><b>Carnet de Vol</b></center></a>
+					</div>
+	</div>
+  
+	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 6" href="{{ path('fos_user_profile_edit') }}">
+		<img class="thumbnail img-responsive"
+			src="{{ asset('bundles/skycore/img/carregrisclai.png') }}">
+					<div style="position:absolute;top:50px; width:260px; height:200px; z-index:2;font-size:150%">
+						<center><b>Ma facture</b></center></a>
+					</div>
+	</div>  
+  
+	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 7" href="{{ path('fos_user_profile_edit') }}">
+		<img class="thumbnail img-responsive"
+			src="{{ asset('bundles/skycore/img/carregrisclai.png') }}">
+					<div style="position:absolute;top:50px; width:260px; height:200px; z-index:2;font-size:150%">
+						<center><b>Mes Réglements</b></center></a>
+					</div>
+	</div>   
+
+	<div class="col-lg-3 col-sm-4 col-xs-6"><a title="Image 7" href="{{ path('fos_user_profile_edit') }}">
+		<img class="thumbnail img-responsive"
+			src="{{ asset('bundles/skycore/img/carregrisclai.png') }}">
+					<div style="position:absolute;top:50px; width:260px; height:200px; z-index:2;font-size:150%">
+						<center><b>Réserver 1 Vol</b></center></a>
+					</div>
+	</div> 		  
+  
+</div>
+
+{% endblock body %}
+

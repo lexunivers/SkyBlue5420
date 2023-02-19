@@ -1,0 +1,41 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% extends "layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+		<meta charset="utf-8">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+	
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+  
+<div class="container">
+
+	<div class="col-md-6 offset-md-3">
+
+						<strong>Bienvenue {{user.firstname }} dans</strong> <img src={{asset('img/logo10.png')}} alt="">
+					
+						<h5><p>{{lastname }}</p></h5>
+						{#{% if targetUrl %}#}
+						{#<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>#}
+						{#{% endif %}#}
+
+					<a button class="btn btn-success" role="button" aria-pressed="true" href="{{ path('sky_user_mesdossiers',{'id': user.id}) }}"><h5>Pour Créer Votre Espace Personnel Cliquez ICI</h5></a>
+
+</div>
+</div>
+</div>
+{% endblock fos_user_content %}
+
