@@ -12,6 +12,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.13",
         "dompdf/dompdf": "^2.0",
+        "eonasdan/bootstrap-datetimepicker": "*",
         "knplabs/knp-paginator-bundle": "^5.9",
         "liip/imagine-bundle": "^2.8",
         "phpdocumentor/reflection-docblock": "^5.3",
@@ -60,7 +61,10 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "composer/installers": true,
+            "robloach/component-installer": true,
+            "oomphinc/composer-installers-extender": true
         },
         "optimize-autoloader": true,
         "preferred-install": {
@@ -110,7 +114,7 @@
         "symfony/browser-kit": "5.4.*",
         "symfony/css-selector": "5.4.*",
         "symfony/debug-bundle": "5.4.*",
-        "symfony/maker-bundle": "^1.47",
+        "symfony/maker-bundle": "1.48",
         "symfony/phpunit-bridge": "^6.1",
         "symfony/stopwatch": "5.4.*",
         "symfony/web-profiler-bundle": "5.4.*"

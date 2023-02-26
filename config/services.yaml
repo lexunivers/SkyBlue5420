@@ -54,6 +54,11 @@ services:
         tags:
             - { name: sonata.admin, model_class: App\Entity\Terrain, manager_type: orm, group: Localisation,label: Terrain }
 
+    #admin.compte_individuel:
+    #    class: App\Admin\OperationComptableAdmin
+    #    tags:
+    #        - { name: sonata.admin, model_class: App\Entity\OperationComptable, controller: App\Controller\CpteIndividuelController, manager_type: orm, group: Cptes Individuels, label: Cpte Individuel }
+
     admin.operation_comptable:
         class: App\Admin\OperationComptableAdmin
         tags:
@@ -76,4 +81,14 @@ services:
         tags:
             - { name: sonata.admin, model_class: App\Entity\Reserver, controller: App\Controller\ReserverController, manager_type: orm, group: Reservation, label: Reserver }
         #public: true
+
+    admin.parametres:
+        class: App\Admin\ParametresAdmin
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Parametres, controller: App\Controller\ParametresController, manager_type: orm, group: Statistiques, label: Parametres }
+
+    admin.cpte_individuel:
+        class: App\Admin\ComptepiloteAdmin
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\CpteIndividuel, controller: App\Controller\CpteIndividuelController, manager_type: orm, group: Consultation, label: Cptes Individuels }
 

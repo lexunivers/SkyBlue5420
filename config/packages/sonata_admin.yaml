@@ -1,4 +1,25 @@
 sonata_admin:
+    assets:
+        extra_stylesheets:
+            - bundles/sonataformatter/markitup/skins/sonata/style.css
+            - bundles/sonataformatter/markitup/sets/markdown/style.css
+            - bundles/sonataformatter/markitup/sets/html/style.css
+            - bundles/sonataformatter/markitup/sets/textile/style.css
+            - css/admin.css
+            - build/admin.css
+            - css/fontawesome/css/all.css
+            - bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css
+ 
+        extra_javascripts:
+            - bundles/fosckeditor/ckeditor.js
+            - bundles/sonataformatter/vendor/markitup-markitup/markitup/jquery.markitup.js
+            - bundles/sonataformatter/markitup/sets/markdown/set.js
+            - bundles/sonataformatter/markitup/sets/html/set.js
+            - bundles/sonataformatter/markitup/sets/textile/set.js
+            - bundles/pixsortablebehavior/js/jquery-ui.min.js
+            - bundles/pixsortablebehavior/js/init.js
+            - bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
+            - js/admin.js
 
     default_admin_services:
         #security_handler: App\Security\Handler\MySecurityHandler
@@ -33,15 +54,13 @@ sonata_admin:
                 position: left
                 type: sonata.admin.block.admin_list
                 settings:
-                    groups: [sonata_user, Comptabilité, Gestion Des Vols,  Localisation ]
+                    groups: [sonata_user, Comptabilité, Gestion Des Vols,  Localisation, Consultation ]
                     
             -
                 position: right
                 type: sonata.admin.block.admin_list
                 settings:
-                    groups: [Parc Avions, Formation, Reservation ]
-
-
+                    groups: [Parc Avions, Formation, Reservation, Statistiques ]
 
 sonata_block:
     blocks:
