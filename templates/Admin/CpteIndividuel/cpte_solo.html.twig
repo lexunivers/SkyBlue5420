@@ -2,6 +2,7 @@
  
 {% block notice %}
     {{ parent() }}
+je fais un essai
 {% endblock %}
 		
 {% form_theme formComptable _self %}
@@ -28,12 +29,19 @@
 						<div>
 							<strong>{{ form_row(formComptable.user, {'label' : 'Choisissez un Adhérent', 'attr' : { 'class' : 'user'}}) }}</strong>
 						</div>									
-						<div> 
-							{#	<button type="submit" class="btn btn-primary">Valider</button> #}
-						</div>
 					</div>
 				</div>
 			</div>
+			<div class="col-5">
+				<div class="form-group" id="user">
+					<div class="col-sm-3">										
+						<div>
+							<a class="logo" href="/admin/dashboard"><span>Retour Tableau de Bord</span></a>
+						</div>									
+					</div>
+				</div>
+			</div>
+
 		</div>
 	
 {{ form_end(formComptable) }}
@@ -69,7 +77,7 @@
 								</h5>
 							</div>
 					</div>
-  <br />
+  <hr>
 
 					<div class="row">							
 						<div class="col-6">
@@ -172,7 +180,10 @@
 		{#	<a href="{{ path('sky_compte_paiement') }}" class="btn btn-outline-primary" role="button" aria-pressed="true">Paiement</a> #}
 		{#	<a href="{{ path('sky_user_mesdossiers') }}" class="btn btn-outline-primary" role="button" aria-pressed="true">Mes Dossiers</a>#}
 		{#	<a href="{{ path('sky_PDF_EtatCompte') }}" class="btn btn-outline-success" role="button" aria-pressed="true"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>  Imprimer</a>#}
-		
+ 
+<div class="sonata-ba-form-actions well well-small form-actions">  		
+<a class="btn btn-outline-primary" href="/admin/dashboard"  role="button" aria-pressed="true">Retour Tableau de Bord</a>			
+			</div>
 			</div>
 
 </div>

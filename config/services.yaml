@@ -85,10 +85,14 @@ services:
     admin.parametres:
         class: App\Admin\ParametresAdmin
         tags:
-            - { name: sonata.admin, model_class: App\Entity\Parametres, controller: App\Controller\ParametresController, manager_type: orm, group: Statistiques, label: Parametres }
+            - { name: sonata.admin, model_class: App\Entity\Parametres, controller: App\Controller\ParametresController, manager_type: orm, group: Parametres, label: Parametres }
 
     admin.cpte_individuel:
         class: App\Admin\ComptepiloteAdmin
         tags:
             - { name: sonata.admin, model_class: App\Entity\CpteIndividuel, controller: App\Controller\CpteIndividuelController, manager_type: orm, group: Consultation, label: Cptes Individuels }
 
+    admin.statistiques:
+        class: App\Admin\StatistiquesAdmin
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Statistiques, controller: App\Controller\StatistiquesController, manager_type: orm, group: Consultation, label: Statistiques }

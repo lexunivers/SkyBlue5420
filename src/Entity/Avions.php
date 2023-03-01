@@ -420,18 +420,6 @@ class Avions
 		return $this;
  	}
 
-//    public function getColorAvion(): ?Resources
-//    {
-//        return $this->ColorAvion;
-//    }
-
-//    public function setColorAvion(?Resources $ColorAvion): self
-//    {
-//        $this->ColorAvion = $ColorAvion;
-
-//        return $this;
-//    }
-
 public function getAvion(): ?Resources
 {
     return $this->Avion;

@@ -45,7 +45,6 @@ final class UserAdminController extends CRUDController
 				
                 $Comptepilote = new Comptepilote();
 
-
                 $this->admin->setSubject($submittedObject);
 
                 try {

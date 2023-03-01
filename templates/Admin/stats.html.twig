@@ -1,0 +1,27 @@
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
+ 
+{% block notice %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}Statistiques{% endblock %}
+
+{% block stylesheet %}
+
+{% endblock stylesheet %}
+
+
+{% block body %}
+Je fais UN ESSAI
+<div class="container">
+    <h1>Statistiques</h1>
+        <canvas id="Users" width="400" height="100"></canvas>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js" integrity="sha512-v3ygConQmvH0QehvQa6gSvTE2VdBZ6wkLOlmK7Mcy2mZ0ZF9saNbbk19QeaoTHdWIEiTlWmrwAL4hS8ElnGFbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    let Users = document.querySelector("#Users")
+{% endblock %}

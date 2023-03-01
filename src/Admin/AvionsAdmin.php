@@ -35,7 +35,7 @@ final class AvionsAdmin extends AbstractAdmin
             ->add('place')
             ->add('valeur')
             ->add('heuresdevol')
-            ->add('heuresdevolmachine')
+            ->add('heuresCellule')
             ->add('enparc')
             ->add('datefiche')
             ->add('tarifHoraire')
@@ -61,7 +61,7 @@ final class AvionsAdmin extends AbstractAdmin
 
             ->add('valeur')
             ->add('heuresdevol', null, ['label' => 'Nbre H/Vol'])//, 'int', array('total'=>'H/','format'=>'h:i:s '))
-            ->add('heuresdevolmachine', null, ['label' => 'Nbre H/Vol/Machine'])
+            ->add('heuresCellule', null, ['label' => 'Nbre H/Vol/Machine'])
 			//->add('CouleurGrille')
             #->add('enparc')
             #->add('datefiche')
@@ -97,7 +97,7 @@ final class AvionsAdmin extends AbstractAdmin
 					->add('place', null, ['required' => false])
 					->add('valeur', null, ['required' => false])					
 					->add('heuresdevol', TextType::class, array('label' => 'H de Vol','required' => false))
-					->add('heuresdevolmachine', IntegerType::class, array('label' => 'H/Vol Machine','required' => false))				
+					->add('heuresCellule', IntegerType::class, array('label' => 'H/Vol Machine','required' => false))				
 				->end()
                 
 				->with('Tarification', array('class' => 'col-md-3', 'box_class'   => 'box box-solid box-primary'))
@@ -137,7 +137,7 @@ final class AvionsAdmin extends AbstractAdmin
 			->with('Données Techniques',['class' => 'col-md-4', 'box_class'   => 'box box-solid box-danger'])				
 				->add('heuresdevol', null,['label' => 'H de Vol Moteur',
 											'format' => 'H:i',])
-				->add('heuresdevolmachine', null,['label' => 'H de Vol cellule'])
+				->add('heuresCellule', null,['label' => 'H de Vol cellule'])
 				->add('tarifHoraire',null,['label' => 'Tarif Horaire'])
 				->add('instruction')
 				->add('enparc', null,['label' => 'En Parc'])
